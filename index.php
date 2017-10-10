@@ -46,7 +46,7 @@
                 <?php
                 //tomamos los datos del archivo conexion.php
                 require("connect.php");
-                $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category";
+                $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location, l.name as location FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location";
                 //se envia la consulta
                 $result=$mysqli->query($sql);
                 $rows = $result->num_rows;
