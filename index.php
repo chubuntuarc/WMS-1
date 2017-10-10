@@ -63,7 +63,7 @@
                     echo '<tbody>';
                     while($row = mysqli_fetch_assoc($result)){
                         echo '<tr>';
-                        echo '<td><a href="detail.php">'.$row['id_product'].'</a></td>';
+                        echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
                         echo '<td>'.$row['product_name'].'</td>';
                         echo '<td>'.$row['categoria'].'</td>';
                         echo '<td>'.$row['location'].'</td>';
