@@ -16,14 +16,14 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.html">WMS</a> | Entrada de inventario</h5>
+                <h5 class="mainTitle"><a href="index.php">WMS</a> | Entrada de inventario</h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="index.html">Inventario</a> --
-                    <a href="ins.html">Entrada múltiple</a> --
-                    <a href="out.html">Nueva salida</a>
+                    <a href="index.php">Inventario</a> --
+                    <a href="ins.php">Entrada múltiple</a> --
+                    <a href="out.php">Nueva salida</a>
                 </div>
             </div>
         </div>
