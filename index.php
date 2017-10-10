@@ -46,7 +46,7 @@
                 <?php
                 //tomamos los datos del archivo conexion.php
                 require("connect.php");
-                $sql = "SELECT * FROM warehouse";
+                $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category";
                 //se envia la consulta
                 $result=$mysqli->query($sql);
                 $rows = $result->num_rows;
@@ -65,7 +65,7 @@
                         echo '<tr>';
                         echo '<td><a href="detail.php">'.$row['id_product'].'</a></td>';
                         echo '<td>'.$row['product_name'].'</td>';
-                        echo '<td>'.$row['category'].'</td>';
+                        echo '<td>'.$row['categoria'].'</td>';
                         echo '<td>'.$row['location'].'</td>';
                         echo '</tr>';
                     }
