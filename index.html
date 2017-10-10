@@ -9,30 +9,31 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
     <!-- Milligram CSS minified -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link rel="stylesheet" href="css/master.css">
 </head>
 <body>
 
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5>WMS | Inventario</h5>
+                <h5 class="mainTitle"><a href="index.html">WMS</a> | Inventario</h5>
+                <hr>
+            </div>
+            <div class="column">
+                <div class="column menuOptions">
+                    <a href="in.html">Nueva entrada</a> --
+                    <a href="out.html">Nueva salida</a> --
+                    <a href="#!">Exportar</a>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="column">
-                <form>
+                <form class="searchBox">
                     <fieldset>
                         <input type="text" placeholder="Buscar.." id="nameField">
                     </fieldset>
                 </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <!-- Default Button -->
-                <a class="button" href="in.html">Nueva entrada</a>
-                <!-- Outlined Button -->
-                <a class="button button-outline" href="out.html">Nueva salida</a>
             </div>
         </div>
     </div>
