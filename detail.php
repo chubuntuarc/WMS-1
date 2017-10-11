@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $id = intval($_GET['code']);
 require("connect.php");
-$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo FROM warehouse w INNER JOIN operative o ON w.operative = o.id WHERE id_product = $id";
+$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){

@@ -53,7 +53,7 @@
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT * FROM operative ORDER BY initial_date DESC";
+                        $sql = "SELECT * FROM operative ORDER BY id_operative DESC";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
