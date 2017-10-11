@@ -1,3 +1,13 @@
+.dt-buttons{
+    margin-left: 20px;
+margin-top: 25px;
+}
+#grid_filter input{
+    position: absolute;
+top: -86px;
+left: -5px;
+width: 100%;
+}
 .mainTitle{
     margin-bottom: -30px;
 }
