@@ -22,8 +22,7 @@
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
-                    <a href="ins.php">Entrada múltiple</a> --
-                    <a href="out.php">Nueva salida</a>
+                    <a href="ins.php">Entrada múltiple</a>
                 </div>
             </div>
         </div>

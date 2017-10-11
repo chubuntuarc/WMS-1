@@ -78,8 +78,7 @@ while($row = mysqli_fetch_assoc($result)){
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
-                    <a href="in.php">Nueva entrada</a> --
-                    <a href="out.php">Nueva salida</a>
+                    <a href="in.php">Nueva entrada</a>
                 </div>
             </div>
         </div>
@@ -103,6 +102,7 @@ while($row = mysqli_fetch_assoc($result)){
                         <blockquote>
                             <p><em><?php echo $comments; ?></em></p>
                         </blockquote>
+                        <?php echo '<a style="font-size:13px;" href="out.php?code='.$id.'">Registrar salida</a>'; ?>
                     </div>
                 </div>
             </div>

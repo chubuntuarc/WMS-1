@@ -22,7 +22,6 @@
             <div class="column">
                 <div class="column menuOptions">
                     <a href="in.php">Nueva entrada</a> --
-                    <a href="out.php">Nueva salida</a> --
                     <a href="#!">Exportar</a>
                 </div>
             </div>
@@ -69,12 +68,6 @@
                         echo '<td>'.$row['location'].'</td>';
                         echo '</tr>';
                     }
-                    echo '<tr>';
-                    echo '<td><a href="detail.php">25017007</a></td>';
-                    echo '<td>ARA25017007</td>';
-                    echo '<td>Camioneta</td>';
-                    echo '<td>Fila 1</td>';
-                    echo '</tr>';
                     echo '</tbody>';
                     echo '</table>';
                     ?>

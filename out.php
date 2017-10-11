@@ -22,32 +22,11 @@
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
-                    <a href="in.php">Nueva entrada</a> --
-                    <a href="outs.php">Salida múltiple</a>
+                    <a href="in.php">Nueva entrada</a>
                 </div>
             </div>
         </div>
     </div>
-
-<div class="container">
-    <div class="row">
-        <div class="column">
-            <form>
-                <fieldset>
-                    <label for="ageRangeField">Código</label>
-                    <select id="ageRangeField">
-                        <option value="auto">2780987</option>
-                        <option value="camioneta">2456789</option>
-                        <option value="tracto">2456789</option>
-                        <option value="otro">2456789</option>
-                    </select>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
-
-    <hr>
 
     <div class="container">
         <div class="row">
