@@ -15,13 +15,41 @@ while($row = mysqli_fetch_assoc($result)){
     $pic4 = $row['pic4'];
     $pic5 = $row['pic5'];
     $pic6 = $row['pic6'];
-    $coffer = $row['coffer'];
-    $driver = $row['driver'];
-    $left_door = $row['left_door'];
-    $trunk = $row['trunk'];
-    $right_door = $row['right_door'];
-    $codriver = $row['codriver'];
-    $fuel = $row['fuel'];
+    switch ($row['coffer']) {
+        case '0': $coffer = 'N/A'; break;
+        case '1': $coffer = 'Despegado'; break;
+        case '2': $coffer = 'Roto'; break;
+        default: $coffer = $row['coffer']; break; }
+    switch ($row['driver']) {
+        case '0': $driver = 'N/A'; break;
+        case '1': $driver = 'Despegado'; break;
+        case '2': $driver = 'Roto'; break;
+        default: $driver = $row['driver']; break; }
+    switch ($row['left_door']) {
+        case '0': $left_door = 'N/A'; break;
+        case '1': $left_door = 'Despegado'; break;
+        case '2': $left_door = 'Roto'; break;
+        default: $left_door = $row['left_door']; break; }
+    switch ($row['trunk']) {
+        case '0': $trunk = 'N/A'; break;
+        case '1': $trunk = 'Despegado'; break;
+        case '2': $trunk = 'Roto'; break;
+        default: $trunk = $row['trunk']; break; }
+    switch ($row['right_door']) {
+        case '0': $right_door = 'N/A'; break;
+        case '1': $right_door = 'Despegado'; break;
+        case '2': $right_door = 'Roto'; break;
+        default: $right_door = $row['right_door']; break; }
+    switch ($row['codriver']) {
+        case '0': $codriver = 'N/A'; break;
+        case '1': $codriver = 'Despegado'; break;
+        case '2': $codriver = 'Roto'; break;
+        default: $codriver = $row['codriver']; break; }
+    switch ($row['fuel']) {
+        case '0': $fuel = 'N/A'; break;
+        case '1': $fuel = 'Despegado'; break;
+        case '2': $fuel = 'Roto'; break;
+        default: $fuel = $row['fuel']; break; }
 }
 ?>
 <!DOCTYPE html>
@@ -90,7 +118,7 @@ while($row = mysqli_fetch_assoc($result)){
                                 echo "<div class='pic pic-4'><img src='".$pic4."' /></div>";
                                 echo "<div class='pic pic-5'><img src='".$pic5."' /></div>";
                                 echo "<div class='pic pic-6'><img src='".$pic6."' /></div>";
-                                 ?>
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -127,7 +155,7 @@ while($row = mysqli_fetch_assoc($result)){
                             echo '<td>'.$right_door.'</td>';
                             echo '<td>'.$codriver.'</td>';
                             echo '<td>'.$fuel.'</td>';
-                             ?>
+                            ?>
                         </tr>
                     </tbody>
                 </table>
@@ -141,7 +169,7 @@ while($row = mysqli_fetch_assoc($result)){
 
 <script type="text/javascript">
 $('.pic').bind('click', function() {
-$('.pic').toggleClass('away');
-$(this).removeClass('away').toggleClass('active');
+    $('.pic').toggleClass('away');
+    $(this).removeClass('away').toggleClass('active');
 });
 </script>
