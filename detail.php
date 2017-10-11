@@ -19,36 +19,43 @@ while($row = mysqli_fetch_assoc($result)){
         case '0': $coffer = 'N/A'; break;
         case '1': $coffer = 'Despegado'; break;
         case '2': $coffer = 'Roto'; break;
+        case '3': $coffer = 'Sin folio / sello'; break;
         default: $coffer = $row['coffer']; break; }
     switch ($row['driver']) {
         case '0': $driver = 'N/A'; break;
         case '1': $driver = 'Despegado'; break;
         case '2': $driver = 'Roto'; break;
+        case '3': $driver = 'Sin folio / sello'; break;
         default: $driver = $row['driver']; break; }
     switch ($row['left_door']) {
         case '0': $left_door = 'N/A'; break;
         case '1': $left_door = 'Despegado'; break;
         case '2': $left_door = 'Roto'; break;
+        case '3': $left_door = 'Sin folio / sello'; break;
         default: $left_door = $row['left_door']; break; }
     switch ($row['trunk']) {
         case '0': $trunk = 'N/A'; break;
         case '1': $trunk = 'Despegado'; break;
         case '2': $trunk = 'Roto'; break;
+        case '3': $trunk = 'Sin folio / sello'; break;
         default: $trunk = $row['trunk']; break; }
     switch ($row['right_door']) {
         case '0': $right_door = 'N/A'; break;
         case '1': $right_door = 'Despegado'; break;
         case '2': $right_door = 'Roto'; break;
+        case '3': $right_door = 'Sin folio / sello'; break;
         default: $right_door = $row['right_door']; break; }
     switch ($row['codriver']) {
         case '0': $codriver = 'N/A'; break;
         case '1': $codriver = 'Despegado'; break;
         case '2': $codriver = 'Roto'; break;
+        case '3': $codriver = 'Sin folio / sello'; break;
         default: $codriver = $row['codriver']; break; }
     switch ($row['fuel']) {
         case '0': $fuel = 'N/A'; break;
         case '1': $fuel = 'Despegado'; break;
         case '2': $fuel = 'Roto'; break;
+        case '3': $fuel = 'Sin folio / sello'; break;
         default: $fuel = $row['fuel']; break; }
 }
 ?>

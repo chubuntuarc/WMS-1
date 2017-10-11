@@ -93,7 +93,12 @@
             "oLanguage": {
                 "sSearch": "",
                 "sLengthMenu": "Ver _MENU_ ",
-                'sSearchPlaceholder': 'Buscar...'
+                'sSearchPlaceholder': 'Buscar...',
+                "oPaginate":{
+                    "sPrevious" : "Anterior",
+                    "sNext" : "Siguiente"
+                },
+                "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
             }
         });
     });
