@@ -1,8 +1,12 @@
+<?php
+$id = $_GET['id'];
+$code = $_GET['code'];
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Inventario</title>
+    <title>WMS | Detalle de operativo <?php echo $code; ?></title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -20,12 +24,12 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Inventario</h5>
+                <h5 class="mainTitle"><a href="index.php">WMS</a> | Operativo <?php echo $code; ?> </h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="operative.php">Operativos</a> --
+                    <a href="index.php">Inventario</a> --
                     <a href="in.php">Nueva entrada</a>
                 </div>
             </div>
@@ -48,14 +52,14 @@
                             <th>Descripción</th>
                             <th>Categoría</th>
                             <th>Ubicación</th>
-                            <th>Operativo</th>
+                            <th>Entrada</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id";
+                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location, l.name as location, o.id_operative as operativo, w.enter_date FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id WHERE w.operative = $id";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
@@ -65,7 +69,7 @@
                             echo '<td>'.$row['product_name'].'</td>';
                             echo '<td>'.$row['categoria'].'</td>';
                             echo '<td>'.$row['location'].'</td>';
-                            echo '<td>'.$row['operativo'].'</td>';
+                            echo '<td>'.$row['enter_date'].'</td>';
                             echo '</tr>';
                         }
                         ?>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Inventario</title>
+    <title>WMS | Operativos</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -20,12 +20,12 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Inventario</h5>
+                <h5 class="mainTitle"><a href="index.php">WMS</a> | Operativos</h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="operative.php">Operativos</a> --
+                    <a href="index.php">Inventario</a> --
                     <a href="in.php">Nueva entrada</a>
                 </div>
             </div>
@@ -44,28 +44,24 @@
                 <table id="grid">
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Ubicación</th>
                             <th>Operativo</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha de término</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id";
+                        $sql = "SELECT * FROM operative ORDER BY initial_date DESC";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
                         while($row = mysqli_fetch_assoc($result)){
                             echo '<tr>';
-                            echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
-                            echo '<td>'.$row['product_name'].'</td>';
-                            echo '<td>'.$row['categoria'].'</td>';
-                            echo '<td>'.$row['location'].'</td>';
-                            echo '<td>'.$row['operativo'].'</td>';
+                            echo '<td><a href="operative_detail.php?code='.$row['id_operative'].'&id='.$row['id'].'">'.$row['id_operative'].'</a></td>';
+                            echo '<td>'.$row['initial_date'].'</td>';
+                            echo '<td>'.$row['final_date'].'</td>';
                             echo '</tr>';
                         }
                         ?>

@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $id = intval($_GET['code']);
 require("connect.php");
-$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel FROM warehouse WHERE id_product = $id";
+$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo FROM warehouse w INNER JOIN operative o ON w.operative = o.id WHERE id_product = $id";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){
@@ -15,6 +15,7 @@ while($row = mysqli_fetch_assoc($result)){
     $pic4 = $row['pic4'];
     $pic5 = $row['pic5'];
     $pic6 = $row['pic6'];
+    $operativo = $row['operativo'];
     switch ($row['coffer']) {
         case '0': $coffer = 'N/A'; break;
         case '1': $coffer = 'Despegado'; break;
@@ -84,6 +85,7 @@ while($row = mysqli_fetch_assoc($result)){
             </div>
             <div class="column">
                 <div class="column menuOptions">
+                    <a href="operative.php">Operativos</a> --
                     <a href="index.php">Inventario</a> --
                     <a href="in.php">Nueva entrada</a>
                 </div>
@@ -109,6 +111,7 @@ while($row = mysqli_fetch_assoc($result)){
                         <blockquote>
                             <p><em><?php echo $comments; ?></em></p>
                         </blockquote>
+                        <?php echo "<p>".$operativo."</p>"; ?>
                         <?php echo '<a style="font-size:13px;" href="out.php?code='.$id.'">Registrar salida</a>'; ?>
                     </div>
                 </div>
