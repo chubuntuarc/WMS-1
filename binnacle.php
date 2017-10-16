@@ -27,7 +27,8 @@
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
                     <a href="operative.php">Operativos</a> --
-                    <a href="in.php">Nueva entrada</a>
+                    <a href="in.php">Nueva entrada</a> --
+                    <a href="binnacle_post.php">Nuevo registro</a>
                 </div>
             </div>
         </div>
@@ -55,13 +56,13 @@
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b  LEFT JOIN users u ON b.user_id = u.user_id LEFT JOIN locations l ON b.location = l.id_location";
+                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b LEFT JOIN users u ON b.user_id = u.user_id LEFT JOIN locations l ON b.location = l.id_location";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
                         while($row = mysqli_fetch_assoc($result)){
                             echo '<tr>';
-                            echo '<td><a href="detail.php?code='.$row['id'].'">'.$row['date'].'</a></td>';
+                            echo '<td>'.$row['date'].'</td>';
                             echo '<td>'.$row['description'].'</td>';
                             echo '<td>'.$row['loca'].'</td>';
                             echo '<td>'.$row['usuario'].'</td>';
@@ -92,6 +93,7 @@
                     ]
                 }
             ],
+            "order": [[ 0, "desc" ]],
             "oLanguage": {
                 "sSearch": "",
                 "sLengthMenu": "Ver _MENU_ ",
