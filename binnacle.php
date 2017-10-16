@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Operativos</title>
+    <title>WMS | Bitácora</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -20,14 +20,14 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Operativos</h5>
+                <h5 class="mainTitle"><a href="index.php">WMS</a> | Bitácora</h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
-                    <a href="in.php">Nueva entrada</a> --
-                    <a href="binnacle.php">Bitácora</a>
+                    <a href="operative.php">Operativos</a> --
+                    <a href="in.php">Nueva entrada</a>
                 </div>
             </div>
         </div>
@@ -45,24 +45,26 @@
                 <table id="grid">
                     <thead>
                         <tr>
-                            <th>Operativo</th>
-                            <th>Fecha de inicio</th>
-                            <th>Fecha de término</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Ubicación</th>
+                            <th>Responsable</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT * FROM operative ORDER BY id_operative DESC";
+                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b  LEFT JOIN users u ON b.user_id = u.user_id LEFT JOIN locations l ON b.location = l.id_location";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
                         while($row = mysqli_fetch_assoc($result)){
                             echo '<tr>';
-                            echo '<td><a href="operative_detail.php?code='.$row['id_operative'].'&id='.$row['id'].'">'.$row['id_operative'].'</a></td>';
-                            echo '<td>'.$row['initial_date'].'</td>';
-                            echo '<td>'.$row['final_date'].'</td>';
+                            echo '<td><a href="detail.php?code='.$row['id'].'">'.$row['date'].'</a></td>';
+                            echo '<td>'.$row['description'].'</td>';
+                            echo '<td>'.$row['loca'].'</td>';
+                            echo '<td>'.$row['usuario'].'</td>';
                             echo '</tr>';
                         }
                         ?>

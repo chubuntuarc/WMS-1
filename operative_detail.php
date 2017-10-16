@@ -30,7 +30,8 @@ $code = $_GET['code'];
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
-                    <a href="in.php">Nueva entrada</a>
+                    <a href="in.php">Nueva entrada</a> --
+                    <a href="binnacle.php">Bitácora</a>
                 </div>
             </div>
         </div>
