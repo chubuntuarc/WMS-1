@@ -27,7 +27,8 @@
                 <div class="column menuOptions">
                     <a href="operative.php">Operativos</a> --
                     <a href="in.php">Nueva entrada</a> --
-                    <a href="binnacle.php">Bitácora</a>
+                    <a href="binnacle.php">Bitácora</a> --
+                    <a href="settings.php">Ajustes</a>
                 </div>
             </div>
         </div>
