@@ -1,8 +1,21 @@
+<?php
+$result = $_GET['result'];
+
+if(isset($_POST['submit'])){
+        require("connect.php");
+        $location = $_POST['location'];
+        $description = $_POST['description'];
+
+        $sql = "INSERT INTO binnacle(description, location, user_id) VALUES('".$description."', ".$location.", 2)";
+
+        $result=$mysqli->query($sql);
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Inventario</title>
+    <title>WMS | Nuevo registro bitácora</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -20,11 +33,12 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Inventario</h5>
+                <h5 class="mainTitle"><a href="index.php">WMS</a> | Registrar en bitácora</h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
+                    <a href="index.php">Inventario</a> --
                     <a href="operative.php">Operativos</a> --
                     <a href="in.php">Nueva entrada</a> --
                     <a href="binnacle.php">Bitácora</a>
@@ -37,46 +51,34 @@
         </div>
     </div>
 
-    <hr>
-
     <div class="container">
         <div class="row">
             <div class="column">
-                <table id="grid">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Almacén</th>
-                            <th>Ubicación</th>
-                            <th>Operativo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //tomamos los datos del archivo conexion.php
-                        require("connect.php");
-                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, (SELECT name FROM locations WHERE id_location =  w.warehouse) as warehouse, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id";
-                        //se envia la consulta
-                        $result=$mysqli->query($sql);
-                        $rows = $result->num_rows;
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo '<tr>';
-                            echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
-                            echo '<td>'.$row['product_name'].'</td>';
-                            echo '<td>'.$row['categoria'].'</td>';
-                            echo '<td>'.$row['warehouse'].'</td>';
-                            echo '<td>'.$row['location'].'</td>';
-                            echo '<td>'.$row['operativo'].'</td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                <?php
+                if($result == 'ok'){
+                    echo "<blockquote>";
+                    echo "<p><em>Registro ingresado correctamente</em></p>";
+                    echo "</blockquote>";
+                }
+                 ?>
+                <form method="post">
+                    <fieldset>
+                        <label for="nameField">Responsable</label>
+                        <input type="text" placeholder="Jorge Salvador" id="nameField" disabled>
+                        <label>Ubicación</label>
+                        <select name="location">
+                            <option value="10">Almacén</option>
+                            <option value="11">Patio</option>
+                        </select>
+                        <label for="commentField">Descripción</label>
+                        <textarea name="description" placeholder="Escribir actividad a registrar"></textarea>
+                        <input class="button-primary" name="submit" type="submit" value="Registrar">
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
+
 
     <script type="text/javascript">
     $( document ).ready(function() {
@@ -105,6 +107,9 @@
                     "sNext" : "Siguiente"
                 },
                 "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
+            },
+            "dataTables_filter" {
+                "display": "none"
             }
         });
     });
