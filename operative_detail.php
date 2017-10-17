@@ -6,7 +6,7 @@ $code = $_GET['code'];
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Detalle de operativo <?php echo $code; ?></title>
+    <title>TDR | Detalle de operativo <?php echo $code; ?></title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -24,7 +24,7 @@ $code = $_GET['code'];
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Operativo <?php echo $code; ?> </h5>
+                <h5 class="mainTitle"><a href="index.php">TDR</a> | Operativo <?php echo $code; ?> </h5>
                 <hr>
             </div>
             <div class="column">

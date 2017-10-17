@@ -1,21 +1,8 @@
-<?php
-$result = $_GET['result'];
-
-if(isset($_POST['submit'])){
-        require("connect.php");
-        $location = $_POST['location'];
-        $description = $_POST['description'];
-
-        $sql = "INSERT INTO binnacle(description, location, user_id) VALUES('".$description."', ".$location.", 2)";
-
-        $result=$mysqli->query($sql);
-    }
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Nuevo registro bitácora</title>
+    <title>TDR | Inicio de sesión</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -33,16 +20,10 @@ if(isset($_POST['submit'])){
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">TDR</a> | Registrar en bitácora</h5>
-                <hr>
+                <h5 class="mainTitle"><a href="index.php">TDR</a> | Inicio de sesión</h5>
             </div>
             <div class="column">
-                <div class="column menuOptions">
-                    <a href="index.php">Inventario</a> --
-                    <a href="operative.php">Operativos</a> --
-                    <a href="in.php">Nueva entrada</a> --
-                    <a href="binnacle.php">Bitácora</a>
-                </div>
+
             </div>
         </div>
         <div class="row">
@@ -50,35 +31,32 @@ if(isset($_POST['submit'])){
             </div>
         </div>
     </div>
+
+    <hr>
 
     <div class="container">
         <div class="row">
+            <div class="column"></div>
             <div class="column">
-                <?php
-                if($result == 'ok'){
-                    echo "<blockquote>";
-                    echo "<p><em>Registro ingresado correctamente</em></p>";
-                    echo "</blockquote>";
-                }
-                 ?>
-                <form method="post">
-                    <fieldset>
-                        <label for="nameField">Responsable</label>
-                        <input type="text" placeholder="Jorge Salvador" id="nameField" disabled>
-                        <label>Ubicación</label>
-                        <select name="location">
-                            <option value="10">Almacén</option>
-                            <option value="11">Patio</option>
-                        </select>
-                        <label for="commentField">Descripción</label>
-                        <textarea name="description" placeholder="Escribir actividad a registrar"></textarea>
-                        <input class="button-primary" name="submit" type="submit" value="Registrar">
-                    </fieldset>
-                </form>
+                <p style="text-align:center;">Accede con tu usuario y contraseña</p>
+                <div class="box">
+                    <hr>
+                    <br>
+                    <form class="" action="login.php" method="post">
+                        <fieldset>
+                            <label for="nameField">Usuario</label>
+                            <input type="text" placeholder="Nombre de usuario" id="nameField">
+                            <label for="nameField">Contraseña</label>
+                            <input type="password" placeholder="Clave de acceso" id="nameField">
+                            <input class="button-primary" type="submit" value="Acceder">
+                        </fieldset>
+                    </form>
+                    <hr>
+                </div>
             </div>
+            <div class="column"></div>
         </div>
     </div>
-
 
     <script type="text/javascript">
     $( document ).ready(function() {
@@ -107,9 +85,6 @@ if(isset($_POST['submit'])){
                     "sNext" : "Siguiente"
                 },
                 "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-            },
-            "dataTables_filter" {
-                "display": "none"
             }
         });
     });

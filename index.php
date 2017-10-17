@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>WMS | Inventario</title>
+    <title>TDR | Inventario</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">WMS</a> | Inventario</h5>
+                <h5 class="mainTitle"><a href="index.php">TDR</a> | Inventario</h5>
                 <hr>
             </div>
             <div class="column">
@@ -28,7 +28,8 @@
                     <a href="operative.php">Operativos</a> --
                     <a href="in.php">Nueva entrada</a> --
                     <a href="binnacle.php">Bitácora</a> --
-                    <a href="settings.php">Ajustes</a>
+                    <a href="login.php">Salir</a>
+                    <!-- <a href="settings.php">Ajustes</a> -->
                 </div>
             </div>
         </div>
