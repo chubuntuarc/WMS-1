@@ -5,8 +5,9 @@ if(isset($_POST['submit'])){
         require("connect.php");
         $location = $_POST['location'];
         $description = $_POST['description'];
+        $person = $_POST['personal'];
 
-        $sql = "INSERT INTO binnacle(description, location, user_id) VALUES('".$description."', ".$location.", 1)";
+        $sql = "INSERT INTO binnacle(description, location, user_id) VALUES('".$description."', ".$location.", ".$person.")";
 
         $result=$mysqli->query($sql);
     }
@@ -63,15 +64,15 @@ if(isset($_POST['submit'])){
                  ?>
                 <form method="post">
                     <fieldset>
-                        <label for="nameField">Responsable</label>
-                        <input type="text" placeholder="Sergio Lira" id="nameField" disabled>
                         <label>Ubicación</label>
-                        <select name="location">
+                        <select name="location" required>
                             <option value="10">Almacén</option>
                             <option value="11">Patio</option>
                         </select>
                         <label for="commentField">Descripción</label>
-                        <textarea name="description" placeholder="Escribir actividad a registrar"></textarea>
+                        <textarea name="description" placeholder="Escribir actividad a registrar" required></textarea>
+                        <label for="nameField">Responsable</label>
+                        <input type="text" name="personal" placeholder="Código de acceso" id="nameField" required>
                         <input class="button-primary" name="submit" type="submit" value="Registrar">
                     </fieldset>
                 </form>

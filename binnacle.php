@@ -56,7 +56,7 @@
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b LEFT JOIN users u ON b.user_id = u.user_id LEFT JOIN locations l ON b.location = l.id_location";
+                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
