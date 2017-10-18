@@ -72,6 +72,15 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <br><br><hr>
+                <p style="font-size:10px;margin-top:-20px;">Desarrollado por <a href="http://proyectoalis.com">Jesus Arciniega</a></p>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
     $( document ).ready(function() {
         $('#grid').DataTable({
