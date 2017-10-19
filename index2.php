@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Inventario</title>
+    <title>TDR | Inventario completo</title>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
@@ -21,12 +21,12 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">TDR</a> | Inventario actual</h5>
+                <h5 class="mainTitle"><a href="index.php">TDR</a> | Inventario completo</h5>
                 <hr>
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="index2.php">Inventario Completo</a> --
+                    <a href="index.php">Inventario actual</a> --
                     <a href="operative.php">Operativos</a> --
                     <a href="in.php">Nueva entrada</a> --
                     <a href="binnacle.php">Bitácora</a> --
@@ -61,7 +61,7 @@
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, (SELECT name FROM locations WHERE id_location =  w.warehouse) as warehouse, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id WHERE w.status != 1";
+                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, (SELECT name FROM locations WHERE id_location =  w.warehouse) as warehouse, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
