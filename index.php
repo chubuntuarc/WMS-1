@@ -6,12 +6,15 @@ if($_SESSION["user_id"] == 0){
 if($_SESSION["user_id"] == 0){
     header("Location: login.php");
 }
-switch ($_SESSION["user_id"]) {
+switch ($_SESSION["rol"]) {
     case 0:
         $grant = 0;
         break;
-    case 5:
+    case 1:
         $grant = 1;
+        break;
+    case 7:
+        header("Location: binnacle.php");
         break;
     default:
         $grant = 0;

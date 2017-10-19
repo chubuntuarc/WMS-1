@@ -20,6 +20,9 @@ if(isset($_POST['submit'])){
         case 1:
             $grant = 1;
             break;
+        case 7:
+            $grant = 1;
+            break;
         default:
             $grant = 0;
             break;
@@ -52,10 +55,13 @@ if(isset($_POST['submit'])){
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="index.php">Inventario</a> --
-                    <a href="operative.php">Operativos</a> --
+                    <a <?php if($_SESSION["rol"] == 7){echo "style='display:none;'";} ?> href="index.php">Inventario -- </a>
+                    <a <?php if($_SESSION["rol"] == 7){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a href="binnacle.php">Bitácora</a>
+                    <form class="" action="logout.php" method="post">
+                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
+                    </form>
                 </div>
             </div>
         </div>
@@ -97,7 +103,7 @@ if(isset($_POST['submit'])){
                         <label for="commentField">Descripción</label>
                         <textarea name="description" placeholder="Escribir actividad a registrar" required></textarea>
                         <label for="nameField">Responsable</label>
-                        <input type="text" name="personal" placeholder="Código de acceso" id="nameField" required>
+                        <input type="text" name="personal" placeholder="Código de acceso" id="nameField" required autocomplete="off">
                         <input class="button-primary" name="submit" type="submit" value="Registrar">
                     </fieldset>
                 </form>
