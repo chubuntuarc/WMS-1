@@ -1,5 +1,8 @@
 <?php
 session_start();
+if($_SESSION["user_id"] == 0){
+    header("Location: login.php");
+}
 switch ($_SESSION["user_id"]) {
     case 0:
         $grant = 0;
@@ -42,8 +45,10 @@ switch ($_SESSION["user_id"]) {
                     <a href="index2.php">Inventario Completo</a> --
                     <a href="operative.php">Operativos</a> --
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a href="binnacle.php">Bitácora</a> --
-                    <a href="login.php">Salir</a>
+                    <a href="binnacle.php">Bitácora</a>
+                    <form class="" action="logout.php" method="post">
+                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
+                    </form>
                     <!-- <a href="settings.php">Ajustes</a> -->
                 </div>
             </div>
