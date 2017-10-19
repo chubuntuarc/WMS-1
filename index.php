@@ -28,7 +28,7 @@
                 <div class="column menuOptions">
                     <a href="index2.php">Inventario Completo</a> --
                     <a href="operative.php">Operativos</a> --
-                    <a href="in.php">Nueva entrada</a> --
+                    <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a href="binnacle.php">Bitácora</a> --
                     <a href="login.php">Salir</a>
                     <!-- <a href="settings.php">Ajustes</a> -->

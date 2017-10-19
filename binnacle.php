@@ -27,7 +27,7 @@
                 <div class="column menuOptions">
                     <a href="index.php">Inventario</a> --
                     <a href="operative.php">Operativos</a> --
-                    <a href="in.php">Nueva entrada</a> --
+                    <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a href="binnacle_post.php">Nuevo registro</a>
                 </div>
             </div>
