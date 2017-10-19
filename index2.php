@@ -46,10 +46,12 @@ switch ($_SESSION["rol"]) {
             <div class="column">
                 <div class="column menuOptions">
                     <a href="index.php">Inventario actual</a> --
-                    <a href="operative.php">Operativos</a> --
+                    <a href="operative.php">-- Operativos</a> --
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a href="binnacle.php">Bitácora</a> --
-                    <a href="login.php">Salir</a>
+                    <a href="binnacle.php">-- Bitácora</a>
+                    <form class="" action="logout.php" method="post">
+                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
+                    </form>
                     <!-- <a href="settings.php">Ajustes</a> -->
                 </div>
             </div>
