@@ -76,7 +76,7 @@
         <div class="row">
             <div class="column">
                 <br><br><hr>
-                <p style="font-size:10px;margin-top:-20px;">Desarrollado por <a href="http://proyectoalis.com">Jesus Arciniega</a></p>
+                <p style="font-size:10px;margin-top:-20px;">Desarrollado por <a href="http://proyectoalis.com">Jesus Arciniega</a> &copy; 2017</p>
             </div>
         </div>
     </div>
