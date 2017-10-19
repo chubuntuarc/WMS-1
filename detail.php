@@ -218,11 +218,11 @@ while($row = mysqli_fetch_assoc($result)){
                                                 <fieldset>
                                                     <input type="hidden" name="id" <?php echo "value='$id'"; ?>>
                                                     <label for="nameField">Cliente</label>
-                                                    <input type="text" name="client" placeholder="Cliente" id="nameField">
+                                                    <input type="text" name="client" placeholder="Cliente" id="nameField" required>
                                                     <label for="commentField">Comentarios de salida</label>
-                                                    <textarea placeholder="Registrar comentarios de salida" id="commentField" name="comments"></textarea>
+                                                    <textarea placeholder="Registrar comentarios de salida" id="commentField" name="comments" required></textarea>
                                                     <label for="fileToUpload">Foto evidencia</label>
-                                                    <input type="file" name="photo" id="fileToUpload">
+                                                    <input type="file" name="photo" id="fileToUpload" required>
                                                     <br><br>
                                                     <input class="button-primary" name="submit" type="submit" value="Registrar">
                                                 </fieldset>
