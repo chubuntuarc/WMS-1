@@ -1,3 +1,16 @@
+<?php
+session_start();
+switch ($_SESSION["rol"]) {
+    case 0:
+        $grant = 0;
+        break;
+    case 1:
+        $grant = 1;
+        break;
+    default:
+        $grant = 0;
+        break;
+} ?>
 <!DOCTYPE html>
 <html>
 <head>

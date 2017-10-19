@@ -1,3 +1,22 @@
+<?php
+session_start();
+require("connect.php");
+$message="";
+if(!empty($_POST["login"])) {
+	$sql = "SELECT * FROM users WHERE username='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'";
+    $result=$mysqli->query($sql);
+    $rows = $result->num_rows;
+    while($row = mysqli_fetch_assoc($result)){
+        $_SESSION["user_id"] = $row['user_id'];
+        $_SESSION["rol"] = $row['rol'];
+    }
+	if($_SESSION["user_id"]!="") {
+    header("Location: index.php");
+	} else {
+	$message = "Invalid Username or Password!";
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +52,7 @@
     </div>
 
     <hr>
+	
 
     <div class="container">
         <div class="row">
@@ -42,13 +62,14 @@
                 <div class="box">
                     <hr>
                     <br>
-                    <form class="" action="login.php" method="post">
+                    <form class="" action="" method="post">
                         <fieldset>
+                            <div class="error-message"><?php if(isset($message)) { echo $message; } ?></div>
                             <label for="nameField">Usuario</label>
-                            <input type="text" placeholder="Nombre de usuario" id="nameField">
+                            <input type="text" name="user_name" placeholder="Nombre de usuario" id="nameField">
                             <label for="nameField">Contraseña</label>
-                            <input type="password" placeholder="Clave de acceso" id="nameField">
-                            <input class="button-primary" type="submit" value="Acceder">
+                            <input type="password" name="password" placeholder="Clave de acceso" id="nameField">
+                            <input class="button-primary" name="login" type="submit" value="Acceder">
                         </fieldset>
                     </form>
                     <hr>

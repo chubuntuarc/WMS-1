@@ -1,6 +1,19 @@
 <?php
 $id = $_GET['id'];
 $code = $_GET['code'];
+
+session_start();
+switch ($_SESSION["rol"]) {
+    case 0:
+        $grant = 0;
+        break;
+    case 1:
+        $grant = 1;
+        break;
+    default:
+        $grant = 0;
+        break;
+}
  ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +56,19 @@ $code = $_GET['code'];
 
     <hr>
 
-    <div class="container">
+    <?php
+    if($grant == 0){
+        echo "<div class='container' >";
+        echo "<div class='row' >";
+        echo "<div class='column' >";
+        echo "<h4>No cuentas con acceso a este módulo</h4>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+    }
+     ?>
+
+    <div class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
         <div class="row">
             <div class="column">
                 <table id="grid">

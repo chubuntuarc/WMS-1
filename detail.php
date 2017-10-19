@@ -1,6 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
+switch ($_SESSION["rol"]) {
+    case 0:
+        $grant = 0;
+        break;
+    case 1:
+        $grant = 1;
+        break;
+    default:
+        $grant = 0;
+        break;
+}
+
 $id = intval($_GET['code']);
 require("connect.php");
 $sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
@@ -96,7 +107,20 @@ while($row = mysqli_fetch_assoc($result)){
                                     </div>
                                 </div>
 
-                                <div class="container">
+
+                                <?php
+                                if($grant == 0){
+                                    echo "<div class='container' >";
+                                    echo "<div class='row' >";
+                                    echo "<div class='column' >";
+                                    echo "<h4>No cuentas con acceso a este módulo</h4>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+                                 ?>
+
+                                <div class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
                                     <div class="row">
                                         <div class="column">
                                             <div class="row">
@@ -142,7 +166,7 @@ while($row = mysqli_fetch_assoc($result)){
 
                                 <hr>
 
-                                <div class="container">
+                                <div class="container"  <?php if($grant == 0){echo "style='display:none;'";} ?>>
                                     <div class="row">
                                         <div class="column">
                                             <h5>Relación de sellos</h5>
