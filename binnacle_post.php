@@ -13,9 +13,6 @@ if(isset($_POST['submit'])){
     }
 
     session_start();
-    if($_SESSION["user_id"] == 0){
-        header("Location: login.php");
-    }
     switch ($_SESSION["rol"]) {
         case 0:
             $grant = 0;
