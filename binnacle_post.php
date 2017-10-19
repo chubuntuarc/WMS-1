@@ -20,6 +20,9 @@ if(isset($_POST['submit'])){
         case 1:
             $grant = 1;
             break;
+        case 3:
+            $grant = 1;
+            break;
         case 7:
             $grant = 1;
             break;

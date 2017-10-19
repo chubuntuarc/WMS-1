@@ -10,6 +10,12 @@ switch ($_SESSION["rol"]) {
     case 1:
         $grant = 1;
         break;
+    case 3:
+        $grant = 1;
+        break;
+    case 5:
+        $grant = 1;
+        break;
     default:
         $grant = 0;
         break;
@@ -42,9 +48,12 @@ switch ($_SESSION["rol"]) {
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="index.php">Inventario</a> --
+                    <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a href="binnacle.php">Bitácora</a>
+                    <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="binnacle.php">-- Bitácora</a>
+                    &nbsp;<form class="" action="logout.php" method="post">
+                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
+                    </form>
                 </div>
             </div>
         </div>

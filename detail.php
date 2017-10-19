@@ -10,6 +10,12 @@ switch ($_SESSION["rol"]) {
     case 1:
         $grant = 1;
         break;
+    case 3:
+        $grant = 1;
+        break;
+    case 5:
+        $grant = 1;
+        break;
     default:
         $grant = 0;
         break;
@@ -101,10 +107,13 @@ while($row = mysqli_fetch_assoc($result)){
                                         </div>
                                         <div class="column">
                                             <div class="column menuOptions">
-                                                <a href="operative.php">Operativos</a> --
-                                                <a href="index.php">Inventario</a> --
+                                                <a href="operative.php">Operativos </a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php"> -- Inventario</a>
                                                 <!-- <a href="in.php">Nueva entrada</a> -- -->
-                                                <a href="binnacle.php">Bitácora</a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>
+                                                <form class="" action="logout.php" method="post">
+                                                    <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +151,7 @@ while($row = mysqli_fetch_assoc($result)){
                                                         <p><em><?php echo $comments; ?></em></p>
                                                     </blockquote>
                                                     <?php echo "<p>".$operativo."</p>"; ?>
-                                                    <?php if($status == 0){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Registrar salida</a>';} ?>
+                                                    <?php if($status == 0 && $_SESSION["rol"] != 5){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Registrar salida</a>';} ?>
                                                 </div>
                                             </div>
                                         </div>

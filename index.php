@@ -13,6 +13,12 @@ switch ($_SESSION["rol"]) {
     case 1:
         $grant = 1;
         break;
+    case 3:
+        $grant = 1;
+        break;
+    case 5:
+        header("Location: operative.php");
+        break;
     case 7:
         header("Location: binnacle.php");
         break;
