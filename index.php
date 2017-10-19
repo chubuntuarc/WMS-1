@@ -3,6 +3,9 @@ session_start();
 if($_SESSION["user_id"] == 0){
     header("Location: login.php");
 }
+if($_SESSION["user_id"] == 0){
+    header("Location: login.php");
+}
 switch ($_SESSION["user_id"]) {
     case 0:
         $grant = 0;
