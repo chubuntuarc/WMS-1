@@ -108,7 +108,9 @@ while($row = mysqli_fetch_assoc($result)){
                                         </div>
                                         <div class="column">
                                             <div class="column menuOptions">
-                                                <a href="operative.php">Operativos </a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="layout.php">Layout </a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="operative.php">-- Operativos </a>
+                                                <a <?php if($_SESSION["rol"] != 5){echo "style='display:none;'";} ?>  href="operative.php">Operativos </a>
                                                 <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php"> -- Inventario</a>
                                                 <!-- <a href="in.php">Nueva entrada</a> -- -->
                                                 <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>

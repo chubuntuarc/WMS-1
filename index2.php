@@ -45,7 +45,8 @@ switch ($_SESSION["rol"]) {
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a href="index.php">Inventario actual</a>
+                    <a href="index.php">Inventario actual </a>
+                    <a href="layout.php">-- Layout</a>
                     <a href="operative.php">-- Operativos</a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a href="binnacle.php">-- Bitácora</a>

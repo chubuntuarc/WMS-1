@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
                     <a <?php if($_SESSION["rol"] == 7 || $_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a <?php if($_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="binnacle.php">Bitácora</a>
-                    <form class="" action="logout.php" method="post" <?php if($_SESSION["rol"] == 0){echo "style='display:none;'";} ?> >
+                    <form class="" action="logout.php" method="post" >
                         <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
                     </form>
                 </div>
