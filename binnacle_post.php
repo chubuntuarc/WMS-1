@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     session_start();
     switch ($_SESSION["rol"]) {
         case 0:
-            $grant = 0;
+            $grant = 1;
             break;
         case 1:
             $grant = 1;
@@ -58,11 +58,11 @@ if(isset($_POST['submit'])){
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a <?php if($_SESSION["rol"] == 7){echo "style='display:none;'";} ?> href="index.php">Inventario -- </a>
-                    <a <?php if($_SESSION["rol"] == 7){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
+                    <a <?php if($_SESSION["rol"] == 7 || $_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="index.php">Inventario -- </a>
+                    <a <?php if($_SESSION["rol"] == 7 || $_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a href="binnacle.php">Bitácora</a>
-                    <form class="" action="logout.php" method="post">
+                    <a <?php if($_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="binnacle.php">Bitácora</a>
+                    <form class="" action="logout.php" method="post" <?php if($_SESSION["rol"] == 0){echo "style='display:none;'";} ?> >
                         <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
                     </form>
                 </div>
