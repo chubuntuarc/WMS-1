@@ -49,6 +49,7 @@ switch ($_SESSION["rol"]) {
             <div class="column">
                 <div class="column menuOptions">
                     <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
+                    <a href="operative.php"> -- Operativos</a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
                     <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="binnacle.php">-- Bitácora</a>
                     &nbsp;<form class="" action="logout.php" method="post">
@@ -84,13 +85,60 @@ switch ($_SESSION["rol"]) {
                  <hr>
              </div>
          </div>
+         <div class="row">
+             <div class="column">
+                 <p>Ubicar vehículos</p>
+                 <form class="" action="map_search.php" method="post">
+                     <fieldset>
+                         <div class="row">
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                             <div class="column">
+                                 <input type="text" placeholder="No. BIEN">
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="column">
+                                 <input class="button-primary" type="submit" value="Buscar">
+                             </div>
+                         </div>
+                     </fieldset>
+                 </form>
+                 <hr>
+             </div>
+         </div>
      </div>
 
     <div class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
         <div class="row">
             <div class="column">
                 <h4><b>Municipio</b></h4>
-                <p>31 vehiculos</p>
+                <p style="margin-top:-20px;">31 vehiculos</p>
                 <table id="grid">
                     <thead>
                         <tr>
@@ -293,7 +341,7 @@ switch ($_SESSION["rol"]) {
         <div class="row">
             <div class="column">
                 <h4><b>Venta</b></h4>
-                <p>409 Vehículos</p>
+                <p style="margin-top:-20px;">409 Vehículos</p>
                 <table id="grid">
                     <thead>
                         <tr>

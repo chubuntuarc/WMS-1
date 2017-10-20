@@ -21,14 +21,30 @@ switch ($_SESSION["rol"]) {
         break;
 }
 
+$comment1 = '';
+$comment2 = '';
+$comment3 = '';
+$comment_count = 1;
+
+
 $id = intval($_GET['code']);
 require("connect.php");
-$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
+$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial, w.comment1 , w.comment1_date, w.comment1_pic, w.comment2 , w.comment2_date, w.comment2_pic, w.comment3 , w.comment3_date, w.comment3_pic, w.exit_comments FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){
     $name = $row['product_name'];
     $comments = $row['comments'];
+    $exit_comments = $row['exit_comments'];
+    $comment1 = $row['comment1'];
+    $comment1_date = $row['comment1_date'];
+    $comment1_pic = $row['comment1_pic'];
+    $comment2 = $row['comment2'];
+    $comment2_date = $row['comment2_date'];
+    $comment2_pic = $row['comment2_pic'];
+    $comment3 = $row['comment3'];
+    $comment3_date = $row['comment3_date'];
+    $comment3_pic = $row['comment3_pic'];
     $pic1 = $row['pic1'];
     $pic2 = $row['pic2'];
     $pic3 = $row['pic3'];
@@ -108,10 +124,11 @@ while($row = mysqli_fetch_assoc($result)){
                                         </div>
                                         <div class="column">
                                             <div class="column menuOptions">
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="layout.php">Layout </a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
+                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="layout.php"> -- Layout </a>
                                                 <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="operative.php">-- Operativos </a>
                                                 <a <?php if($_SESSION["rol"] != 5){echo "style='display:none;'";} ?>  href="operative.php">Operativos </a>
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php"> -- Inventario</a>
+
                                                 <!-- <a href="in.php">Nueva entrada</a> -- -->
                                                 <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>
                                                 <form class="" action="logout.php" method="post">
@@ -155,8 +172,8 @@ while($row = mysqli_fetch_assoc($result)){
                                                         <p><em><?php echo $comments; ?></em></p>
                                                     </blockquote>
                                                     <?php echo "<p>".$operativo."</p>"; ?>
-                                                    <?php echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>"; ?>
-                                                    <?php if($status == 0 && $_SESSION["rol"] != 5){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Registrar salida</a>';} ?>
+                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
+                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Nuevo evento</a></br>';} ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -215,7 +232,7 @@ while($row = mysqli_fetch_assoc($result)){
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row" <?php if($status == 0){echo "style='display:none;'";} ?>>
+                                    <div class="row" <?php if($comment1 == '' && $exit_comments == '' && $status == 0){echo "style='display:none;'";} ?>>
                                         <div class="column">
                                             <h5>Registro de eventos</h5>
                                             <table>
@@ -229,16 +246,42 @@ while($row = mysqli_fetch_assoc($result)){
                                                 </thead>
                                                 <tbody>
                                                         <?php
-                                                        $sql = "SELECT exit_date , client, exit_comments, exit_pic FROM warehouse WHERE id_product = " . $id;
+                                                        $sql = "SELECT exit_date , client, exit_comments, exit_pic, comment1, comment1_date, comment1_pic,  comment2, comment2_date, comment2_pic,  comment3, comment3_date, comment3_pic FROM warehouse WHERE id_product = " . $id;
                                                         $result=$mysqli->query($sql);
                                                         $rows = $result->num_rows;
                                                         while($row = mysqli_fetch_assoc($result)){
-                                                            echo '<tr>';
-                                                            echo '<td>'.$row['exit_date'].'</td>';
-                                                            echo '<td>'.$row['client'].'</td>';
-                                                            echo '<td>'.$row['exit_comments'].'</td>';
-                                                            echo '<td><img src="'.$row['exit_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
-                                                            echo '</tr>';
+                                                            if($row['comment1'] != ''){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['comment1_date'].'</td>';
+                                                                echo '<td></td>';
+                                                                echo '<td>'.$row['comment1'].'</td>';
+                                                                echo '<td><img src="'.$row['comment1_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            if($row['comment2'] != ''){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['comment2_date'].'</td>';
+                                                                echo '<td></td>';
+                                                                echo '<td>'.$row['comment2'].'</td>';
+                                                                echo '<td><img src="'.$row['comment2_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            if($row['comment3'] != ''){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['comment3_date'].'</td>';
+                                                                echo '<td></td>';
+                                                                echo '<td>'.$row['comment3'].'</td>';
+                                                                echo '<td><img src="'.$row['comment3_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            if($row['exit_comments'] != ''){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['exit_date'].'</td>';
+                                                                echo '<td>'.$row['client'].'</td>';
+                                                                echo '<td>'.$row['exit_comments'].'</td>';
+                                                                echo '<td><img src="'.$row['exit_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
+                                                                echo '</tr>';
+                                                            }
                                                         }
                                                          ?>
                                                 </tbody>
@@ -252,19 +295,32 @@ while($row = mysqli_fetch_assoc($result)){
                                     <div class="global-modal_contents modal-transition">
                                         <div class="global-modal-header">
                                             <span class="mobile-close"> X </span>
-                                            <h4 style="text-align:center;margin-top:10px;margin-bottom:10px;">Registrar salida de inventario</h4>
+                                            <h4 style="text-align:center;margin-top:10px;margin-bottom:10px;">Registrar nuevo evento</h4>
                                         </div>
                                         <div class="global-modal-body" style="padding-left:30px;padding-right:30px;margin-top:20px;">
                                             <form class="" action="picture_upload.php" method="post" enctype="multipart/form-data">
                                                 <fieldset>
+                                                    <?php
+                                                    if($comment2 == ''){
+                                                        $comment_count = 1;
+                                                    }elseif ($comment3 == '' ) {
+                                                        $comment_count = 2;
+                                                    }else{
+                                                        $comment_count = 3;
+                                                    } ?>
                                                     <input type="hidden" name="id" <?php echo "value='$id'"; ?>>
+                                                    <input type="hidden" name="comment_count" <?php echo "value='$comment_count'"; ?>>
                                                     <label for="nameField">Cliente</label>
-                                                    <input type="text" name="client" placeholder="Cliente" id="nameField" required>
-                                                    <label for="commentField">Comentarios de salida</label>
-                                                    <textarea placeholder="Registrar comentarios de salida" id="commentField" name="comments" required></textarea>
+                                                    <input type="text" name="client" placeholder="Nombre del cliente" id="nameField" <?php if($comment_count == 3){echo "required";} ?>>
+                                                    <label for="commentField">Comentarios</label>
+                                                    <textarea placeholder="Registrar comentarios del evento" id="commentField" name="comments" required></textarea>
                                                     <label for="fileToUpload">Foto evidencia</label>
                                                     <input type="file" name="photo" id="fileToUpload" required>
                                                     <br><br>
+                                                    <div class="float-right">
+                                                      <input type="checkbox" id="confirmField" name="exit" <?php if($comment_count == 3){echo "checked";} ?>>
+                                                      <label class="label-inline" for="confirmField">Registrar como salida de inventario</label>
+                                                    </div>
                                                     <input class="button-primary" name="submit" type="submit" value="Registrar">
                                                 </fieldset>
                                             </form>

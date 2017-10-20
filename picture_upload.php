@@ -1,8 +1,11 @@
 <?php
 require("connect.php");
+$exit = '';
 $id = $_POST['id'];
 $client = $_POST['client'];
 $comments = $_POST['comments'];
+$comment_count = $_POST['comment_count'];
+$exit = $_POST['exit'];
 // Check if the form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if file was uploaded without errors
@@ -27,7 +30,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo $_FILES["photo"]["name"] . " is already exists.";
             } else{
                 move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" . $_FILES["photo"]["name"]);
-                $sql = "UPDATE warehouse SET status =  1, exit_date = NOW(), client = '" . $client . "' ,exit_comments = '" . $comments . "', exit_pic = 'upload/" . $_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
+                if($exit == 'on'){
+                    $sql = "UPDATE warehouse SET status =  1, exit_date = NOW(), client = '" . $client . "' ,exit_comments = '" . $comments . "', exit_pic = 'upload/" . $_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
+                }else{
+                    if($comment_count == 1){
+                        $sql = "UPDATE warehouse SET comment2 = '" . $comments . "', comment2_date = NOW() ,comment2_pic = 'upload/" . $_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
+                    }elseif ($comment_count == 2) {
+                        $sql = "UPDATE warehouse SET comment3 = '" . $comments . "', comment3_date = NOW() ,comment3_pic = 'upload/" . $_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
+                    }
+                }
                 $result=$mysqli->query($sql);
                 header('Location: detail.php?code='.$id);
                 echo "Your file was uploaded successfully.";
