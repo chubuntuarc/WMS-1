@@ -139,7 +139,7 @@ switch ($_SESSION["rol"]) {
         <div class="row">
             <div class="column">
                 <h4><b>Municipio</b></h4>
-                <p style="margin-top:-20px;">31 vehiculos</p>
+                <p style="margin-top:-20px;">28 vehiculos</p>
                 <table id="grid">
                     <thead>
                         <tr>
@@ -342,7 +342,7 @@ switch ($_SESSION["rol"]) {
         <div class="row">
             <div class="column">
                 <h4><b>Venta</b></h4>
-                <p style="margin-top:-20px;">409 Vehículos</p>
+                <p style="margin-top:-20px;">408 Vehículos</p>
                 <table id="grid">
                     <thead>
                         <tr>

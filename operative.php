@@ -86,6 +86,7 @@ switch ($_SESSION["rol"]) {
                             <th>Operativo</th>
                             <th>Fecha de inicio</th>
                             <th>Fecha de término</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,6 +102,12 @@ switch ($_SESSION["rol"]) {
                             echo '<td><a href="operative_detail.php?code='.$row['id_operative'].'&id='.$row['id'].'">'.$row['id_operative'].'</a></td>';
                             echo '<td>'.$row['initial_date'].'</td>';
                             echo '<td>'.$row['final_date'].'</td>';
+                            if($row['status'] == 1){
+                                echo '<td>Completo</td>';
+                            }else{
+                                echo '<td>En proceso</td>';
+                            }
+
                             echo '</tr>';
                         }
                         ?>
