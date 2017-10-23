@@ -80,7 +80,8 @@ switch ($_SESSION["rol"]) {
          <div class="row">
              <div class="column">
                  <h3>Patio</h3>
-                 <p>440 Vehíulos -- 89.43% de ocupación</p>
+                 <p>436 Vehíulos -- 88.61% de ocupación</p>
+                 <!-- 492 -->
                  <p style="font-size:12px;margin-top:-20px;">Estimación aproximada</p>
                  <hr>
              </div>
@@ -189,7 +190,7 @@ switch ($_SESSION["rol"]) {
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>2799885</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td><b>16</b></td>
@@ -209,7 +210,7 @@ switch ($_SESSION["rol"]) {
                         </tr>
                         <tr>
                             <td><b>14</b></td>
-                            <td>2799377</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -313,7 +314,7 @@ switch ($_SESSION["rol"]) {
                         </tr>
                         <tr>
                             <td><b>1</b></td>
-                            <td>2762270</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -505,7 +506,7 @@ switch ($_SESSION["rol"]) {
                             <td></td>
                             <td></td>
                             <td>2838860</td>
-                            <td>2777687</td>
+                            <td></td>
                             <td>2801718</td>
                             <td>2828134</td>
                             <td>2799360</td>
