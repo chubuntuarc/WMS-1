@@ -175,7 +175,7 @@ while($row = mysqli_fetch_assoc($result)){
                                                     </blockquote>
                                                     <?php echo "<p>".$operativo."</p>"; ?>
                                                     <?php if($enter != 0){echo "<p style='font-size:13px;margin-top:-15px;'>Entrada ".$enter."</p>";} ?>
-                                                    <?php if($exit != 0){echo "<p style='font-size:13px;margin-top:-20px;'>Salida ".$exit."</p>";} ?> 
+                                                    <?php if($exit != 0){echo "<p style='font-size:13px;margin-top:-20px;'>Salida ".$exit."</p>";} ?>
                                                     <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3 || $status == 9 && $_SESSION["rol"] == 5){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
                                                     <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3 || $status == 9 && $_SESSION["rol"] == 5){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Nuevo evento</a></br>';} ?>
                                                 </div>
@@ -236,7 +236,7 @@ while($row = mysqli_fetch_assoc($result)){
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row" <?php if($comment1 == '' && $exit_comments == '' && $status == 0){echo "style='display:none;'";} ?>>
+                                    <div class="row" <?php if($comment1 == '' && $exit_comments == '' && $status == 0 || $status == 9){echo "style='display:none;'";} ?>>
                                         <div class="column">
                                             <h5>Registro de eventos</h5>
                                             <table>
