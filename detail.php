@@ -3,7 +3,8 @@ session_start();
 if($_SESSION["user_id"] == 0){
     header("Location: login.php");
 }
-switch ($_SESSION["rol"]) {
+$rol = $_SESSION["rol"];
+switch ($rol) {
     case 0:
         $grant = 0;
         break;
@@ -126,13 +127,13 @@ while($row = mysqli_fetch_assoc($result)){
                                         </div>
                                         <div class="column">
                                             <div class="column menuOptions">
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="layout.php"> -- Layout </a>
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?>  href="operative.php">-- Operativos </a>
-                                                <a <?php if($_SESSION["rol"] != 5){echo "style='display:none;'";} ?>  href="operative.php">Operativos </a>
+                                                <a <?php if($rol == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
+                                                <a <?php if($rol == 5){echo "style='display:none;'";} ?>  href="layout.php"> -- Layout </a>
+                                                <a <?php if($rol == 5){echo "style='display:none;'";} ?>  href="operative.php">-- Operativos </a>
+                                                <a <?php if($rol != 5){echo "style='display:none;'";} ?>  href="operative.php">Operativos </a>
 
                                                 <!-- <a href="in.php">Nueva entrada</a> -- -->
-                                                <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>
+                                                <a <?php if($rol == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>
                                                 <form class="" action="logout.php" method="post">
                                                     <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
                                                 </form>
@@ -176,8 +177,9 @@ while($row = mysqli_fetch_assoc($result)){
                                                     <?php echo "<p>".$operativo."</p>"; ?>
                                                     <?php if($enter != 0){echo "<p style='font-size:13px;margin-top:-15px;'>Entrada ".$enter."</p>";} ?>
                                                     <?php if($exit != 0){echo "<p style='font-size:13px;margin-top:-20px;'>Salida ".$exit."</p>";} ?>
-                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3 || $status == 9 && $_SESSION["rol"] == 5){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
-                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3 || $status == 9 && $_SESSION["rol"] == 5){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Nuevo evento</a></br>';} ?>
+                                                    <?php if($status == 0 && $rol == 1 || $status == 9 && $rol == 1 || $status == 0 && $rol == 3 || $status == 9 && $rol == 5){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
+                                                    <?php if($status == 0 && $rol == 1 || $status == 9 && $rol == 1 || $status == 0 && $rol == 3){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Nuevo evento</a></br>';} ?>
+                                                    <?php if($status == 9 && $rol == 5){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Salida de operativo</a></br>';} ?>
                                                 </div>
                                             </div>
                                         </div>
