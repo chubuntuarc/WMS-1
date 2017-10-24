@@ -104,6 +104,8 @@ switch ($_SESSION["rol"]) {
                             echo '<td>'.$row['final_date'].'</td>';
                             if($row['status'] == 1){
                                 echo '<td>Completo</td>';
+                            }elseif ($row['status'] == 2) {
+                                echo '<td>Pendiente</td>';
                             }else{
                                 echo '<td>En proceso</td>';
                             }

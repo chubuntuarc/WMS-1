@@ -29,10 +29,12 @@ $comment_count = 1;
 
 $id = intval($_GET['code']);
 require("connect.php");
-$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial, w.comment1 , w.comment1_date, w.comment1_pic, w.comment2 , w.comment2_date, w.comment2_pic, w.comment3 , w.comment3_date, w.comment3_pic, w.exit_comments FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
+$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial, w.comment1 , w.comment1_date, w.comment1_pic, w.comment2 , w.comment2_date, w.comment2_pic, w.comment3 , w.comment3_date, w.comment3_pic, w.exit_comments, w.enter_date , w.exit_date FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){
+    $enter = $row['enter_date'];
+    $exit = $row['exit_date'];
     $name = $row['product_name'];
     $comments = $row['comments'];
     $exit_comments = $row['exit_comments'];
@@ -172,8 +174,11 @@ while($row = mysqli_fetch_assoc($result)){
                                                         <p><em><?php echo $comments; ?></em></p>
                                                     </blockquote>
                                                     <?php echo "<p>".$operativo."</p>"; ?>
-                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
-                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3){echo '<a  class="modal-opener" style="font-size:13px;" href="out.php?code='.$id.'">Nuevo evento</a></br>';} ?>
+                                                    <?php if($enter != 0){echo "<p style='font-size:13px;margin-top:-15px;'>Entrada ".$enter."</p>";} ?>
+                                                    <?php if($exit != 0){echo "<p style='font-size:13px;margin-top:-20px;'>Salida ".$exit."</p>";} ?>
+                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3 || $status == 9 && $_SESSION["rol"] == 5){echo "<a href='ticket.php?code=$id' style='font-size:13px;'>Generar etiqueta </a></br>";} ?>
+                                                    <?php if($status == 0 && $_SESSION["rol"] == 1 || $status == 9 && $_SESSION["rol"] == 1 || $status == 0 && $_SESSION["rol"] == 3){echo '<a  class="modal-opener" style="font-size:13px;">Nuevo evento</a></br>';} ?>
+                                                    <?php if($status == 9 && $_SESSION["rol"] == 5){echo '<a  class="modal-opener" style="font-size:13px;">Salida de operativo</a></br>';} ?>
                                                 </div>
                                             </div>
                                         </div>
