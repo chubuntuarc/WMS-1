@@ -1,7 +1,35 @@
 <?php
+// Desactivar toda notificación de error
+error_reporting(0);
 $result = $_GET['result'];
+$rol = $_SESSION["rol"];
+$auth = '';
 
 if(isset($_POST['submit'])){
+
+    switch ($_POST['personal']) {
+        case 8976:
+            $auth = 'ok';
+            break;
+        case 2786:
+            $auth = 'ok';
+            break;
+        case 7373:
+            $auth = 'ok';
+            break;
+        case 9601:
+            $auth = 'ok';
+            break;
+        case 2876:
+            $auth = 'ok';
+            break;
+        default:
+            $auth = 'no';
+            break;
+    }
+    if($auth == 'no'){
+        header('Location: binnacle_post.php?result=no');
+    }else{
         require("connect.php");
         $location = $_POST['location'];
         $description = $_POST['description'];
@@ -11,9 +39,10 @@ if(isset($_POST['submit'])){
 
         $result=$mysqli->query($sql);
     }
+    }
 
     session_start();
-    switch ($_SESSION["rol"]) {
+    switch ($rol) {
         case 0:
             $grant = 1;
             break;
@@ -58,10 +87,10 @@ if(isset($_POST['submit'])){
             </div>
             <div class="column">
                 <div class="column menuOptions">
-                    <a <?php if($_SESSION["rol"] == 7 || $_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="index.php">Inventario -- </a>
-                    <a <?php if($_SESSION["rol"] == 7 || $_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
+                    <a <?php if($rol == 7 || $rol == 0){echo "style='display:none;'";} ?> href="index.php">Inventario -- </a>
+                    <a <?php if($rol == 7 || $rol == 0){echo "style='display:none;'";} ?> href="operative.php">Operativos -- </a>
                     <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a <?php if($_SESSION["rol"] == 0){echo "style='display:none;'";} ?> href="binnacle.php">Bitácora</a>
+                    <a <?php if($rol == 0){echo "style='display:none;'";} ?> href="binnacle.php">Bitácora</a>
                     <form class="" action="logout.php" method="post" >
                         <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
                     </form>
@@ -93,6 +122,10 @@ if(isset($_POST['submit'])){
                 if($result == 'ok'){
                     echo "<blockquote>";
                     echo "<p><em>Registro ingresado correctamente</em></p>";
+                    echo "</blockquote>";
+                }else{
+                    echo "<blockquote>";
+                    echo "<p><em>No se pudo registrar en bitácora</em></p>";
                     echo "</blockquote>";
                 }
                  ?>

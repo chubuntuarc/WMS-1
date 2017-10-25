@@ -301,7 +301,11 @@ while($row = mysqli_fetch_assoc($result)){
                                     <div class="global-modal_contents modal-transition">
                                         <div class="global-modal-header">
                                             <span class="mobile-close"> X </span>
-                                            <h4 style="text-align:center;margin-top:10px;margin-bottom:10px;">Registrar nuevo evento</h4>
+                                            <?php if($rol == 5){
+                                                echo '<h4 style="text-align:center;margin-top:10px;margin-bottom:10px;">Registrar salida de operativo</h4>';
+                                            }else{
+                                                echo '<h4 style="text-align:center;margin-top:10px;margin-bottom:10px;">Registrar nuevo evento</h4>';
+                                            } ?>
                                         </div>
                                         <div class="global-modal-body" style="padding-left:30px;padding-right:30px;margin-top:20px;">
                                             <form class="" action="picture_upload.php" method="post" enctype="multipart/form-data">
@@ -316,14 +320,62 @@ while($row = mysqli_fetch_assoc($result)){
                                                     } ?>
                                                     <input type="hidden" name="id" <?php echo "value='$id'"; ?>>
                                                     <input type="hidden" name="comment_count" <?php echo "value='$comment_count'"; ?>>
-                                                    <label for="nameField">Cliente</label>
-                                                    <input type="text" name="client" placeholder="Nombre del cliente" id="nameField" <?php if($comment_count == 3){echo "required";} ?>>
+                                                    <input type="hidden" name="rol" <?php echo "value='$rol'"; ?>>
+                                                    <div <?php if($rol == 5){echo "style='display:none;'";} ?>>
+                                                        <label for="nameField">Cliente</label>
+                                                        <input type="text" name="client" placeholder="Nombre del cliente" id="nameField" <?php if($comment_count == 3){echo "required";} ?>>
+                                                    </div>
                                                     <label for="commentField">Comentarios</label>
                                                     <textarea placeholder="Registrar comentarios del evento" id="commentField" name="comments" required></textarea>
-                                                    <label for="fileToUpload">Foto evidencia</label>
-                                                    <input type="file" name="photo" id="fileToUpload" required>
+                                                    <div <?php if($rol != 5){echo "style='display:none;'";} ?>>
+                                                        <div class="row">
+                                                            <div class="column">
+                                                                <h4>Sellos</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="column">
+                                                                <label for="coffer">Cofre</label>
+                                                                <input type="text" name="coffer" id="coffer" value="">
+                                                            </div>
+                                                            <div class="column">
+                                                                <label for="driver">Conductor</label>
+                                                                <input type="text" name="driver" id="driver" value="">
+                                                            </div>
+                                                            <div class="column">
+                                                                <label for="left_door">Izquierdo</label>
+                                                                <input type="text" name="left_door" id="left_door" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="column">
+                                                                <label for="trunk">Cajuela</label>
+                                                                <input type="text" name="trunk" id="trunk" value="">
+                                                            </div>
+                                                            <div class="column">
+                                                                <label for="codriver">Copiloto</label>
+                                                                <input type="text" name="codriver" id="codriver" value="">
+                                                            </div>
+                                                            <div class="column">
+                                                                <label for="right_door">Derecho</label>
+                                                                <input type="text" name="right_door" id="right_door" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="column">
+                                                                <label for="fuel">Gasolina</label>
+                                                                <input type="text" name="fuel" id="fuel" value="">
+                                                            </div>
+                                                            <div class="column"></div>
+                                                            <div class="column"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div <?php if($rol == 5){echo "style='display:none;'";} ?>>
+                                                        <label for="fileToUpload">Foto evidencia</label>
+                                                        <input type="file" name="photo" id="fileToUpload" <?php if($rol != 5){echo "required";} ?>>
+                                                    </div>
                                                     <br><br>
-                                                    <div class="float-right">
+                                                    <div class="float-right" <?php if($rol == 5){echo "style='display:none;'";} ?>>
                                                       <input type="checkbox" id="confirmField" name="exit" <?php if($comment_count == 3){echo "checked";} ?>>
                                                       <label class="label-inline" for="confirmField">Registrar como salida de inventario</label>
                                                     </div>
