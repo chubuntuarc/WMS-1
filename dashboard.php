@@ -143,6 +143,40 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 <h4>Bitácora de seguridad</h4>
             </div>
         </div>
+        <div class="row">
+            <div class="column">
+                <table id="grid">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Ubicación</th>
+                            <th>Responsable</th>
+                            <th>Evidencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        //tomamos los datos del archivo conexion.php
+                        require("connect.php");
+                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario, b.picture FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location LIMIT 5";
+                        //se envia la consulta
+                        $result=$mysqli->query($sql);
+                        $rows = $result->num_rows;
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<tr>';
+                            echo '<td>'.$row['date'].'</td>';
+                            echo '<td>'.$row['description'].'</td>';
+                            echo '<td>'.$row['loca'].'</td>';
+                            echo '<td>'.$row['usuario'].'</td>';
+                            echo '<td><img src="'.$row['picture'].'" height="60px"></td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <div class="container">
