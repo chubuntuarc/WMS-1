@@ -71,7 +71,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">TDR</a> | Panel de control</h5>
+                <h5 class="mainTitle"><a href="dashboard.php">TDR</a> | Panel de control</h5>
                 <hr>
             </div>
             <div class="column">
@@ -100,13 +100,13 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
             <div class="column">
                 <h4>Ocupación en patio</h4>
                 <p style="font-size:13px;margin-top:-20px;">Porcentaje estimado</p>
-                <h2><a href="#"><?php echo $porcentaje; ?>%</a></h2>
+                <h2><a href="layout.php"><?php echo $porcentaje; ?>%</a></h2>
                 <p style="font-size:10px;">Calculo en base a la capacidad estimada de 492 vehiculos.</p>
             </div>
             <div class="column">
                 <h4>Cantidad de vehículos</h4>
                 <p style="font-size:13px;margin-top:-20px;">Inventario total en patio</p>
-                <h2><a href="#"><?php echo $cantidad; ?></a></h2>
+                <h2><a href="index.php"><?php echo $cantidad; ?></a></h2>
                 <p style="font-size:10px;">Inventario total registrado en patio de resguardo.</p>
             </div>
             <div class="column">
@@ -123,7 +123,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
             </div>
 
         </div>
-        <div class="row">
+        <div class="row" style="display:none;">
             <div class="column">
                 <h3>Entradas</h3>
             </div>
@@ -139,7 +139,8 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
         </div>
         <div class="row">
             <div class="column">
-                <h5>Bitácora de seguridad</h5>
+                <hr>
+                <h4>Bitácora de seguridad</h4>
             </div>
         </div>
     </div>

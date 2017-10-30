@@ -40,7 +40,7 @@ switch ($_SESSION["rol"]) {
     <div class="container">
         <div class="row">
             <div class="column">
-                <h5 class="mainTitle"><a href="index.php">TDR</a> | Inventario completo</h5>
+                <h5 class="mainTitle"><a href="dashboard.php">TDR</a> | Inventario completo</h5>
                 <hr>
             </div>
             <div class="column">
