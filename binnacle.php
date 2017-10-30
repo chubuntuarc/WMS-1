@@ -88,13 +88,14 @@ switch ($_SESSION["rol"]) {
                             <th>Descripción</th>
                             <th>Ubicación</th>
                             <th>Responsable</th>
+                            <th>Evidencia</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         //tomamos los datos del archivo conexion.php
                         require("connect.php");
-                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location";
+                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario, b.picture FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
@@ -104,6 +105,7 @@ switch ($_SESSION["rol"]) {
                             echo '<td>'.$row['description'].'</td>';
                             echo '<td>'.$row['loca'].'</td>';
                             echo '<td>'.$row['usuario'].'</td>';
+                            echo '<td><img src="'.$row['picture'].'"></td>';
                             echo '</tr>';
                         }
                         ?>
