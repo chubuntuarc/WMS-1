@@ -5,42 +5,6 @@ $result = $_GET['result'];
 $rol = $_SESSION["rol"];
 $auth = '';
 
-if(isset($_POST['submit'])){
-
-    switch ($_POST['personal']) {
-        case 8976:
-            $auth = 'ok';
-            break;
-        case 2786:
-            $auth = 'ok';
-            break;
-        case 7373:
-            $auth = 'ok';
-            break;
-        case 9601:
-            $auth = 'ok';
-            break;
-        case 2876:
-            $auth = 'ok';
-            break;
-        default:
-            $auth = 'no';
-            break;
-    }
-    if($auth == 'no'){
-        header('Location: binnacle_post.php?result=no');
-    }else{
-        require("connect.php");
-        $location = $_POST['location'];
-        $description = $_POST['description'];
-        $person = $_POST['personal'];
-
-        $sql = "INSERT INTO binnacle(description, location, user_id) VALUES('".$description."', ".$location.", ".$person.")";
-
-        $result=$mysqli->query($sql);
-    }
-    }
-
     session_start();
     switch ($rol) {
         case 0:
@@ -129,7 +93,7 @@ if(isset($_POST['submit'])){
                     echo "</blockquote>";
                 }
                  ?>
-                <form method="post">
+                <form action="evidence_upload.php" method="post" enctype="multipart/form-data" >
                     <fieldset>
                         <label>Ubicación</label>
                         <select name="location" required>
@@ -138,6 +102,8 @@ if(isset($_POST['submit'])){
                         </select>
                         <label for="commentField">Descripción</label>
                         <textarea name="description" placeholder="Escribir actividad a registrar" required></textarea>
+                        <label for="fileToUpload">Foto evidencia</label>
+                        <input type="file" name="photo" id="fileToUpload">
                         <label for="nameField">Responsable</label>
                         <input type="text" name="personal" placeholder="Código de acceso" id="nameField" required autocomplete="off">
                         <input class="button-primary" name="submit" type="submit" value="Registrar">
