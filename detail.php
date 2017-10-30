@@ -238,8 +238,10 @@ while($row = mysqli_fetch_assoc($result)){
                                             </table>
                                         </div>
                                     </div>
+
                                     <div class="row" <?php if($comment1 == '' && $exit_comments == '' && $status == 0 || $status == 9){echo "style='display:none;'";} ?>>
                                         <div class="column">
+                                            <hr>
                                             <h5>Registro de eventos</h5>
                                             <table>
                                                 <thead>
