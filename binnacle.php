@@ -105,7 +105,7 @@ switch ($_SESSION["rol"]) {
                             echo '<td>'.$row['description'].'</td>';
                             echo '<td>'.$row['loca'].'</td>';
                             echo '<td>'.$row['usuario'].'</td>';
-                            echo '<td><img src="'.$row['picture'].'"></td>';
+                            echo '<td><img src="'.$row['picture'].'" height="60px"></td>';
                             echo '</tr>';
                         }
                         ?>
