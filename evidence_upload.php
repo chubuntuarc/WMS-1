@@ -4,7 +4,8 @@ require("connect.php");
 $location = $_POST['location'];
 $description = $_POST['description'];
 $person = $_POST['personal'];
-
+$uploadedfileload="true";
+$msg="";
 // Check if the form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if file was uploaded without errors
@@ -30,36 +31,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if($auth == 'ok'){
-        if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
-            $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-            $filename = $_FILES["photo"]["name"];
-            $filetype = $_FILES["photo"]["type"];
-            $filesize = $_FILES["photo"]["size"];
 
-            // Verify file extension
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-
-            // Verify file size - 5MB maximum
-            $maxsize = 5 * 1024 * 1024;
-            if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-
-            // Verify MYME type of the file
-            if(in_array($filetype, $allowed)){
-                // Check whether file exists before uploading it
-                if(file_exists("menar/" . $_FILES["photo"]["name"])){
-                    echo $_FILES["photo"]["name"] . " is already exists.";
-                } else{
-                    move_uploaded_file($_FILES["photo"]["tmp_name"], "menar/" . $_FILES["photo"]["name"]);
-                    $sql = "INSERT INTO binnacle(description, location, user_id, picture) VALUES('".$description."', ".$location.", ".$person.",'menar/" . $_FILES["photo"]["name"] . "')";
-                    $result=$mysqli->query($sql);
-                    header('Location: binnacle_post.php?result=ok');
+        $path = "binnacle/";
+        $valid_file_formats = array("jpg", "png", "gif", "bmp","jpeg");
+        if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+        {
+                $name = $_FILES['photo']['name'];
+                $size = $_FILES['photo']['size'];
+                if(strlen($name)) {
+                    list($txt, $ext) = explode(".", $name);
+                    if(in_array($ext,$valid_file_formats)) {
+                        if($size<(5242880)) {
+                            $image_name = $_FILES['photo']['name'];
+                            $tmp = $_FILES['photo']['tmp_name'];
+                            if(move_uploaded_file($tmp, $path.$image_name)){
+                                $sql = "INSERT INTO binnacle(description, location, user_id, picture) VALUES('".$description."', ".$location.", ".$person.",'".$image_name."')";
+                                $result=$mysqli->query($sql);
+                                header('Location: binnacle_post.php?result=ok');
+                            }
+                            else
+                            echo "Image Upload failed: " . $_FILES["photo"]["error"];
+                        }
+                        else
+                        echo "Image file size maximum 1 MB";
+                    }
+                    else
+                    echo "Invalid file format";
                 }
-            } else{
-                echo "Error: There was a problem uploading your file. Please try again.";
-            }
-        } else{
-            echo "Error: " . $_FILES["photo"]["error"];
+                else
+                $sql = "INSERT INTO binnacle(description, location, user_id, picture) VALUES('".$description."', ".$location.", ".$person.",'binnacle/logo.png')";
+                $result=$mysqli->query($sql);
+                header('Location: binnacle_post.php?result=ok');
         }
     }
     else{
