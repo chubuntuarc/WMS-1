@@ -1,0 +1,15 @@
+{
+    "name":"TDR",
+    "version":"0.1",
+    "manifest_version":2,
+    "description":"Control de inventarios",
+    "app":{
+        "urls":["http://proyectoalis.com/tdr"],
+        "launch":{
+            "web_url":"http://proyectoalis.com/tdr"
+        }
+    },
+    "icons":{
+        "128": "icon.png"
+    }
+}
