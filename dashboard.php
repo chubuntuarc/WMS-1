@@ -140,7 +140,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
         <div class="row">
             <div class="column">
                 <hr>
-                <h4>Bitácora de seguridad</h4>
+                <h4>Bitácora de eventos</h4>
             </div>
         </div>
         <div class="row">
