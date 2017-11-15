@@ -123,26 +123,127 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
             </div>
 
         </div>
-        <div class="row" style="display:none;">
-            <div class="column">
-                <h3>Entradas</h3>
-            </div>
-            <div class="column">
-                <h3>Salidas</h3>
-            </div>
-            <div class="column">
-                <h3>Proximas</h3>
+        
+        <div class="row">
+          <div class="column">
+                <h3>Proximos eventos</h3>
+                 <table id="grid">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>2017-11-06</td>
+                          <td>Visita ocular municipio de la Piedad Michoacan, BIENES: 2749931, 2744688</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="column">
                 <h3>Operativos</h3>
+                <table id="grid">
+                    <thead>
+                        <tr>
+                            <th>Operativo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td><a>JUA1190</a></td>
+                          <td>Pendiente 2017-11-18*</td>
+                        </tr><tr>
+                          <td><a>JUA1187</a></td>
+                          <td>Completo</td>
+                        </tr>
+                        <tr>
+                          <td><a>JUA1180</a></td>
+                          <td>Completo</td>
+                        </tr>
+                        <tr>
+                          <td><a>JUA1179</a></td>
+                          <td>Completo</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+        
+        
         <div class="row">
             <div class="column">
-                <hr>
+                <h3>Entradas</h3>
+                <table id="grid">
+                    <thead>
+                        <tr>
+                            <th>BIEN</th>
+                            <th>Descripción</th>
+                            <th>Ubicacion</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Fila 7</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr><tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Fila 7</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr><tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Fila 7</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <h3>Salidas</h3>
+                <table id="grid">
+                    <thead>
+                        <tr>
+                            <th>BIEN</th>
+                            <th>Descripción</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Cliente particular</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr><tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Cliente particular</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr><tr>
+                          <td><a>2845434</a></td>
+                          <td>Dodge RAM 1500 2002 Blanco</td>
+                          <td>Cliente particular</td>
+                          <td>2017-10-25 12:30:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column">
                 <h4>Bitácora de eventos</h4>
             </div>
         </div>
+        
         <div class="row">
             <div class="column">
                 <table id="grid">
