@@ -138,7 +138,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                     <tbody>
                         <?php
                         //tomamos los datos del archivo conexion.php
-                        $sql = "SELECT b.id, b.event_date, b.description FROM diary b ORDER BY id DESC LIMIT 5";
+                        $sql = "SELECT b.id, b.event_date, b.description FROM diary b WHERE event_date >= CURDATE() ORDER BY id DESC LIMIT 10";
                         //se envia la consulta
                         $result=$mysqli->query($sql);
                         $rows = $result->num_rows;
