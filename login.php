@@ -11,7 +11,7 @@ if(!empty($_POST["login"])) {
         $_SESSION["rol"] = $row['rol'];
     }
 	if($_SESSION["user_id"]!="") {
-    header("Location: index.php");
+    header("Location: dashboard.php");
 	} else {
 	$message = "Invalid Username or Password!";
 	}
@@ -52,7 +52,7 @@ if(!empty($_POST["login"])) {
     </div>
 
     <hr>
-	
+
 
     <div class="container">
         <div class="row">

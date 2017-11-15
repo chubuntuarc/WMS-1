@@ -127,7 +127,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
 
         <div class="row">
           <div class="column">
-                <h3>Proximos eventos</h3>
+                <h3>Próximos eventos</h3>
                  <table id="grid">
                     <thead>
                         <tr>
