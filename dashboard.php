@@ -121,9 +121,10 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 <p <?php if($chatarra == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $chatarra ?></a><span> <?php if($chatarra >= 2){echo "Chatarras";}else{echo "Chatarra";} ?></span></p>
                 <p <?php if($maquinaria == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $maquinaria ?></a><span> <?php if($maquinaria >= 2){echo "Maquinas";}else{echo "Maquina";} ?></span></p>
             </div>
-
         </div>
-        
+
+        <hr>
+
         <div class="row">
           <div class="column">
                 <h3>Proximos eventos</h3>
@@ -135,12 +136,22 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                          <td>2017-11-06</td>
-                          <td>Visita ocular municipio de la Piedad Michoacan, BIENES: 2749931, 2744688</td>
-                        </tr>
+                        <?php
+                        //tomamos los datos del archivo conexion.php
+                        $sql = "SELECT b.id, b.event_date, b.description FROM diary b ORDER BY id DESC LIMIT 5";
+                        //se envia la consulta
+                        $result=$mysqli->query($sql);
+                        $rows = $result->num_rows;
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo '<tr>';
+                            echo '<td>'.$row['event_date'].'</td>';
+                            echo '<td>'.$row['description'].'</td>';
+                            echo '</tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
+                <a href="new_event.php">Nuevo registro</a>
             </div>
             <div class="column">
                 <h3>Operativos</h3>
@@ -171,8 +182,9 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 </table>
             </div>
         </div>
-        
-        
+
+        <hr>
+
         <div class="row">
             <div class="column">
                 <h3>Entradas</h3>
@@ -237,13 +249,15 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 </table>
             </div>
         </div>
-        
+
+        <hr>
+
         <div class="row">
             <div class="column">
                 <h4>Bitácora de eventos</h4>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="column">
                 <table id="grid">
