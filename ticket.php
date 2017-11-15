@@ -5,7 +5,8 @@ $id = intval($_GET['code']);
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Impresión ticket</title>
+    <title>Impresión ticket</title>
+    <link rel="shortcut icon" href="logotdr-min.png">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->

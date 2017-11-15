@@ -56,7 +56,12 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Panel de control</title>
+    <title>Panel de control</title>
+    <link rel="shortcut icon" href="logotdr-min.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="tdr-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="tdr-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="tdr-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="tdr-icon-144x144.png" />
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->

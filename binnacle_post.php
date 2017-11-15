@@ -28,7 +28,8 @@ switch ($rol) {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Nuevo registro bitácora</title>
+    <title>Nuevo registro bitácora</title>
+    <link rel="shortcut icon" href="logotdr-min.png">
     <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png" />

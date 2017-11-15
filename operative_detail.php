@@ -28,7 +28,8 @@ switch ($_SESSION["rol"]) {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Detalle de operativo <?php echo $code; ?></title>
+    <title>Detalle de operativo <?php echo $code; ?></title>
+    <link rel="shortcut icon" href="logotdr-min.png">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->

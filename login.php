@@ -21,7 +21,8 @@ if(!empty($_POST["login"])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>TDR | Inicio de sesión</title>
+    <title>Inicio de sesión</title>
+	<link rel="shortcut icon" href="logotdr-min.png">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
