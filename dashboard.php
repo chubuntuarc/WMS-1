@@ -168,23 +168,29 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                          <td><a>JUA1190</a></td>
-                          <td>Pendiente 2017-11-18*</td>
-                        </tr><tr>
-                          <td><a>JUA1187</a></td>
-                          <td>Completo</td>
-                        </tr>
-                        <tr>
-                          <td><a>JUA1180</a></td>
-                          <td>Completo</td>
-                        </tr>
-                        <tr>
-                          <td><a>JUA1179</a></td>
-                          <td>Completo</td>
-                        </tr>
-                    </tbody>
+                        <tbody>
+                            <?php
+                            //tomamos los datos del archivo conexion.php
+                            $sql = "SELECT * FROM operative ORDER BY id_operative DESC LIMIT 5";
+                            //se envia la consulta
+                            $result=$mysqli->query($sql);
+                            $rows = $result->num_rows;
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo '<tr>';
+                                echo '<td><a href="operative_detail.php?code='.$row['id_operative'].'&id='.$row['id'].'">'.$row['id_operative'].'</a></td>';
+                                if($row['status'] == 1){
+                                    echo '<td>Completo</td>';
+                                }elseif ($row['status'] == 2) {
+                                    echo '<td>Pendiente ('.$row['initial_date'].')</td>';
+                                }else{
+                                    echo '<td>En proceso</td>';
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
                 </table>
+                <a href="new_operative.php">Nuevo operativo</a>
             </div>
         </div>
 
