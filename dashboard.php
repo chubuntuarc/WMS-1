@@ -35,7 +35,10 @@ $sql = "SELECT COUNT(*) as cantidad, (SELECT COUNT(*) FROM warehouse WHERE statu
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 5) as montacargas,
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 6) as chatarra,
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 7) as maquinaria,
-(SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 8) as cajas
+(SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 8) as cajas,
+(SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 9) as otros,
+(SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 10) as contenedor,
+(SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 11) as camion
  FROM warehouse WHERE status = 0";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
@@ -49,8 +52,11 @@ while($row = mysqli_fetch_assoc($result)){
     $chatarra = $row["chatarra"];
     $maquinaria = $row["maquinaria"];
     $cajas = $row["cajas"];
+    $otros = $row["otros"];
+    $contenedor = $row["contenedor"];
+    $camion = $row["camion"];
 }
-$porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
+$porcentaje = number_format(($cantidad * 100 ) / 480 , 2, '.', '');
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,7 +112,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 <h4>Ocupación en patio</h4>
                 <p style="font-size:13px;margin-top:-20px;">Porcentaje estimado</p>
                 <h2><a href="layout.php"><?php echo $porcentaje; ?>%</a></h2>
-                <p style="font-size:10px;">Calculo en base a la capacidad estimada de 492 vehiculos.</p>
+                <p style="font-size:10px;">Calculo en base a la capacidad estimada de 480 vehiculos.</p>
             </div>
             <div class="column">
                 <h4>Cantidad de vehículos</h4>
@@ -119,12 +125,15 @@ $porcentaje = number_format(($cantidad * 100 ) / 492 , 2, '.', '');
                 <p style="font-size:13px;margin-top:-20px;">Clasificación en base a tipo de vehículo</p>
                 <p <?php if($autos == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $autos; ?></a><span> <?php if($autos >= 2){echo "Autos";}else{echo "Auto";} ?></span></p>
                 <p <?php if($camionetas == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $camionetas ?></a><span> <?php if($camionetas >= 2){echo "Camionetas";}else{echo "Camioneta";} ?></span></p>
+                <p <?php if($camion == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $camion ?></a><span> <?php if($camion >= 2){echo "Camiones";}else{echo "Camión";} ?></span></p>
                 <p <?php if($montas == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $montas ?></a><span> Montacargas</span></p>
                 <p <?php if($tractos == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $tractos ?></a><span> <?php if($tractos >= 2){echo "Tractocamiones";}else{echo "Tractocamion";} ?></span></p>
                 <p <?php if($cajas == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $cajas ?></a><span> <?php if($cajas >= 2){echo "Cajas secas";}else{echo "Caja seca";} ?></span></p>
+                <p <?php if($contenedor == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $contenedor ?></a><span> <?php if($contenedor >= 2){echo "Contenedores de carga";}else{echo "Contenedor de carga";} ?></span></p>
                 <p <?php if($remolques == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $remolques ?></a><span> <?php if($remolques >= 2){echo "Remolques";}else{echo "Remolque";} ?></span></p>
                 <p <?php if($chatarra == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $chatarra ?></a><span> <?php if($chatarra >= 2){echo "Chatarras";}else{echo "Chatarra";} ?></span></p>
                 <p <?php if($maquinaria == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $maquinaria ?></a><span> <?php if($maquinaria >= 2){echo "Maquinas";}else{echo "Maquina";} ?></span></p>
+                <p <?php if($otros == 0){echo 'style="margin-top:-20px;display:none;"';}else{echo 'style="margin-top:-20px;"';} ?>><a href="#"><?php echo $otros ?></a><span> <?php if($otros >= 2){echo "Otros";}else{echo "Otro";} ?></span></p>
             </div>
         </div>
 
