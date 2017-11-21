@@ -12,7 +12,7 @@ $sql = "SELECT COUNT(*) as cantidad, (SELECT COUNT(*) FROM warehouse WHERE statu
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 9) as otros,
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 10) as contenedor,
 (SELECT COUNT(*) FROM warehouse WHERE status = 0 AND category = 11) as camion
- FROM warehouse WHERE status = 0";
+FROM warehouse WHERE status = 0";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){
@@ -49,196 +49,198 @@ $porcentaje = number_format(($cantidad * 100 ) / 480 , 2, '.', '');
 </head>
 <body>
     <?php include("navigation.php"); ?>
-    
+
     <section class="hero is-info">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Panel de control
-      </h1>
-      <h2 class="subtitle">
-        Vista general del almacén
-      </h2>
-    </div>
-  </div>
-</section>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Panel de control
+                </h1>
+                <h2 class="subtitle">
+                    Vista general del almacén
+                </h2>
+            </div>
+        </div>
+    </section>
+
     <br>
+
     <section>
-      <nav class="level">
-    <div class="level-item has-text-centered">
-    <div>
-     <h4>Ocupación en patio</h4>
-     <p style="font-size:10px;">Porcentaje estimado</p>
-      <h2 class="title"><a href="layout.php"><?php echo $porcentaje; ?>%</a></h2>
-      <p style="font-size:8px;">Calculo en base a la capacidad estimada de 480 vehiculos.</p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <h4>Cantidad de vehículos</h4>
-       <p style="font-size:10px;">Inventario total en patio</p>
-       <h2 class="title"><a href="index.php"><?php echo $cantidad; ?></a></h2>
-       <p style="font-size:8px;">Inventario total registrado en patio de resguardo.</p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <h4>Vehículos por tipo</h4>
-      <p style="font-size:10px;">Clasificación en base a tipo de vehículo</p>
-      <p <?php if($autos == 0){echo 'style="display:none;"';}?>><a href="#"><?php echo $autos; ?></a><span> <?php if($autos >= 2){echo "Autos";}else{echo "Auto";} ?></span></p>
-      <p <?php if($camionetas == 0){echo 'style="display:none;"';}?>><a href="#"><?php echo $camionetas ?></a><span> <?php if($camionetas >= 2){echo "Camionetas";}else{echo "Camioneta";} ?></span></p>
-       <p <?php if($camion == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $camion ?></a><span> <?php if($camion >= 2){echo "Camiones";}else{echo "Camión";} ?></span></p>
-       <p <?php if($montas == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $montas ?></a><span> Montacargas</span></p>
-      <p <?php if($tractos == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $tractos ?></a><span> <?php if($tractos >= 2){echo "Tractocamiones";}else{echo "Tractocamion";} ?></span></p>
-      <p <?php if($cajas == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $cajas ?></a><span> <?php if($cajas >= 2){echo "Cajas secas";}else{echo "Caja seca";} ?></span></p>
-      <p <?php if($contenedor == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $contenedor ?></a><span> <?php if($contenedor >= 2){echo "Contenedores de carga";}else{echo "Contenedor de carga";} ?></span></p>
-      <p <?php if($remolques == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $remolques ?></a><span> <?php if($remolques >= 2){echo "Remolques";}else{echo "Remolque";} ?></span></p>
-      <p <?php if($chatarra == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $chatarra ?></a><span> <?php if($chatarra >= 2){echo "Chatarras";}else{echo "Chatarra";} ?></span></p>
-      <p <?php if($maquinaria == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $maquinaria ?></a><span> <?php if($maquinaria >= 2){echo "Maquinas";}else{echo "Maquina";} ?></span></p>
-      <p <?php if($otros == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $otros ?></a><span> <?php if($otros >= 2){echo "Otros";}else{echo "Otro";} ?></span></p>
-       <p style="font-size:8px;">Clasificación en base a tipo de vehículo</p>
-    </div>
-  </div>
-</nav>
-    </section>
-    
-    <br><hr>
-    
-    <section class="container">
-      <h3>Entradas</h3>
-                <table class="table is-hoverable" id="grid">
-                    <thead>
-                        <tr>
-                            <th>BIEN</th>
-                            <th>Descripción</th>
-                            <th>Ubicacion</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr><tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr><tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a class="button is-info" href="in.php">Nueva entrada</a>
-    </section>
-    
-    <hr>
-    
-    <section class="container">
-      <h3>Salidas</h3>
-                <table class="table is-hoverable" id="grid">
-                    <thead>
-                        <tr>
-                            <th>BIEN</th>
-                            <th>Descripción</th>
-                            <th>Ubicacion</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr><tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr><tr>
-                          <td><a>2845434</a></td>
-                          <td>Dodge RAM 1500 2002 Blanco</td>
-                          <td>Fila 7</td>
-                          <td>2017-10-25 12:30:00</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a class="button is-info" href="out.php">Nueva salida</a>
-    </section>
-    
-    <hr>
-    
-    <section class="container">
-      <h3>Próximos eventos</h3>
-                 <table class="table is-hoverable" id="grid">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //tomamos los datos del archivo conexion.php
-                        $sql = "SELECT b.id, b.event_date, b.description FROM diary b WHERE event_date >= CURDATE() ORDER BY id DESC LIMIT 10";
-                        //se envia la consulta
-                        $result=$mysqli->query($sql);
-                        $rows = $result->num_rows;
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo '<tr>';
-                            echo '<td>'.$row['event_date'].'</td>';
-                            echo '<td>'.$row['description'].'</td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
-                <a class="button is-info" href="new_event.php">Nuevo evento</a>
-                
-                <br><br>
-                
-                <h4>Bitácora de eventos</h4>
-                 <table class="table is-hoverable" id="grid">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
-                            <th>Ubicación</th>
-                            <th>Responsable</th>
-                            <th>Evidencia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //tomamos los datos del archivo conexion.php
-                        require("connect.php");
-                        $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario, b.picture FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location ORDER BY id DESC LIMIT 5";
-                        //se envia la consulta
-                        $result=$mysqli->query($sql);
-                        $rows = $result->num_rows;
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo '<tr>';
-                            echo '<td>'.$row['date'].'</td>';
-                            echo '<td>'.$row['description'].'</td>';
-                            echo '<td>'.$row['loca'].'</td>';
-                            echo '<td>'.$row['usuario'].'</td>';
-                            echo '<td><img src="'.$row['picture'].'" height="60px"></td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
-    </section>
-    
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <h4>Ocupación en patio</h4>
+                    <p style="font-size:10px;">Porcentaje estimado</p>
+                    <h2 class="title"><a href="layout.php"><?php echo $porcentaje; ?>%</a></h2>
+                    <p style="font-size:8px;">Calculo en base a la capacidad estimada de 480 vehiculos.</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <h4>Cantidad de vehículos</h4>
+                    <p style="font-size:10px;">Inventario total en patio</p>
+                    <h2 class="title"><a href="index.php"><?php echo $cantidad; ?></a></h2>
+                    <p style="font-size:8px;">Inventario total registrado en patio de resguardo.</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <h4>Vehículos por tipo</h4>
+                    <p style="font-size:10px;">Clasificación en base a tipo de vehículo</p>
+                    <p <?php if($autos == 0){echo 'style="display:none;"';}?>><a href="#"><?php echo $autos; ?></a><span> <?php if($autos >= 2){echo "Autos";}else{echo "Auto";} ?></span></p>
+                        <p <?php if($camionetas == 0){echo 'style="display:none;"';}?>><a href="#"><?php echo $camionetas ?></a><span> <?php if($camionetas >= 2){echo "Camionetas";}else{echo "Camioneta";} ?></span></p>
+                            <p <?php if($camion == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $camion ?></a><span> <?php if($camion >= 2){echo "Camiones";}else{echo "Camión";} ?></span></p>
+                                <p <?php if($montas == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $montas ?></a><span> Montacargas</span></p>
+                                    <p <?php if($tractos == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $tractos ?></a><span> <?php if($tractos >= 2){echo "Tractocamiones";}else{echo "Tractocamion";} ?></span></p>
+                                        <p <?php if($cajas == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $cajas ?></a><span> <?php if($cajas >= 2){echo "Cajas secas";}else{echo "Caja seca";} ?></span></p>
+                                            <p <?php if($contenedor == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $contenedor ?></a><span> <?php if($contenedor >= 2){echo "Contenedores de carga";}else{echo "Contenedor de carga";} ?></span></p>
+                                                <p <?php if($remolques == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $remolques ?></a><span> <?php if($remolques >= 2){echo "Remolques";}else{echo "Remolque";} ?></span></p>
+                                                    <p <?php if($chatarra == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $chatarra ?></a><span> <?php if($chatarra >= 2){echo "Chatarras";}else{echo "Chatarra";} ?></span></p>
+                                                        <p <?php if($maquinaria == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $maquinaria ?></a><span> <?php if($maquinaria >= 2){echo "Maquinas";}else{echo "Maquina";} ?></span></p>
+                                                            <p <?php if($otros == 0){echo 'style="display:none;"';} ?>><a href="#"><?php echo $otros ?></a><span> <?php if($otros >= 2){echo "Otros";}else{echo "Otro";} ?></span></p>
+                                                                <p style="font-size:8px;">Clasificación en base a tipo de vehículo</p>
+                                                            </div>
+                                                        </div>
+                                                    </nav>
+                                                </section>
 
-   <?php include("footer.php"); ?>
+                                                <br><hr>
+
+                                                <section class="container">
+                                                    <h3>Entradas</h3>
+                                                    <table class="table is-hoverable" id="grid">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>BIEN</th>
+                                                                <th>Descripción</th>
+                                                                <th>Ubicacion</th>
+                                                                <th>Fecha</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr><tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr><tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <a class="button is-info" href="in.php">Nueva entrada</a>
+                                                </section>
+
+                                                <hr>
+
+                                                <section class="container">
+                                                    <h3>Salidas</h3>
+                                                    <table class="table is-hoverable" id="grid">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>BIEN</th>
+                                                                <th>Descripción</th>
+                                                                <th>Ubicacion</th>
+                                                                <th>Fecha</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr><tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr><tr>
+                                                                <td><a>2845434</a></td>
+                                                                <td>Dodge RAM 1500 2002 Blanco</td>
+                                                                <td>Fila 7</td>
+                                                                <td>2017-10-25 12:30:00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <a class="button is-info" href="out.php">Nueva salida</a>
+                                                </section>
+
+                                                <hr>
+
+                                                <section class="container">
+                                                    <h3>Próximos eventos</h3>
+                                                    <table class="table is-hoverable" id="grid">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Fecha</th>
+                                                                <th>Descripción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            //tomamos los datos del archivo conexion.php
+                                                            $sql = "SELECT b.id, b.event_date, b.description FROM diary b WHERE event_date >= CURDATE() ORDER BY id DESC LIMIT 10";
+                                                            //se envia la consulta
+                                                            $result=$mysqli->query($sql);
+                                                            $rows = $result->num_rows;
+                                                            while($row = mysqli_fetch_assoc($result)){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['event_date'].'</td>';
+                                                                echo '<td>'.$row['description'].'</td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                    <a class="button is-info" href="new_event.php">Nuevo evento</a>
+
+                                                    <br><br>
+
+                                                    <h4>Bitácora de eventos</h4>
+                                                    <table class="table is-hoverable" id="grid">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Fecha</th>
+                                                                <th>Descripción</th>
+                                                                <th>Ubicación</th>
+                                                                <th>Responsable</th>
+                                                                <th>Evidencia</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            //tomamos los datos del archivo conexion.php
+                                                            require("connect.php");
+                                                            $sql = "SELECT b.id, b.date, b.description, l.name as loca, u.name as usuario, b.picture FROM binnacle b LEFT JOIN users u ON b.user_id = u.clave LEFT JOIN locations l ON b.location = l.id_location ORDER BY id DESC LIMIT 5";
+                                                            //se envia la consulta
+                                                            $result=$mysqli->query($sql);
+                                                            $rows = $result->num_rows;
+                                                            while($row = mysqli_fetch_assoc($result)){
+                                                                echo '<tr>';
+                                                                echo '<td>'.$row['date'].'</td>';
+                                                                echo '<td>'.$row['description'].'</td>';
+                                                                echo '<td>'.$row['loca'].'</td>';
+                                                                echo '<td>'.$row['usuario'].'</td>';
+                                                                echo '<td><img src="'.$row['picture'].'" height="60px"></td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </section>
 
 
-</body>
-</html>
+                                                <?php include("footer.php"); ?>
+
+
+                                            </body>
+                                            </html>

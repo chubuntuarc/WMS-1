@@ -1,79 +1,40 @@
-<?php
-session_start();
-if($_SESSION["user_id"] == 0){
-    header("Location: login.php");
-}
-if($_SESSION["user_id"] == 0){
-    header("Location: login.php");
-}
-switch ($_SESSION["rol"]) {
-    case 0:
-        $grant = 0;
-        break;
-    case 1:
-        $grant = 1;
-        break;
-    case 3:
-        $grant = 1;
-        break;
-    case 5:
-        header("Location: operative.php");
-        break;
-    case 7:
-        header("Location: binnacle.php");
-        break;
-    default:
-        $grant = 0;
-        break;
-}
-?>
+<?php require("session_check.php");error_reporting(0); setlocale(LC_ALL,”es_ES”); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inventario</title>
     <link rel="shortcut icon" href="logotdr-min.png">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <!-- Milligram CSS minified -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="tdr-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="tdr-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="tdr-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="tdr-icon-144x144.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <!-- Exportar y manejar tablas -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
-
     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <!--<link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/stats.css">-->
 </head>
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <h5 class="mainTitle"><a href="dashboard.php">TDR</a> | Inventario actual</h5>
-                <hr>
-            </div>
-            <div class="column">
-                <div class="column menuOptions">
-                    <a href="index2.php">Inventario Completo </a>
-                    <a href="layout.php">-- Layout</a>
-                    <a href="operative.php">-- Operativos</a>
-                    <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a href="binnacle.php"> -- Bitácora</a>
-                    <form class="" action="logout.php" method="post">
-                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
-                    </form>
-                    <!-- <a href="settings.php">Ajustes</a> -->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-            </div>
-        </div>
-    </div>
+    <?php include("navigation.php"); ?>
 
-    <hr>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Inventario
+                </h1>
+                <h2 class="subtitle">
+                    Inventario actual en almacén
+                </h2>
+            </div>
+        </div>
+    </section>
+
 
     <?php
     if($grant == 0){
@@ -85,55 +46,50 @@ switch ($_SESSION["rol"]) {
         echo "</div>";
         echo "</div>";
     }
-     ?>
+    ?>
+
+    <br><br>
 
     <div class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
-        <div class="row">
-            <div class="column">
-                <table id="grid">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Almacén</th>
-                            <th>Ubicación</th>
-                            <th>Operativo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //tomamos los datos del archivo conexion.php
-                        require("connect.php");
-                        $sql = "SELECT w.id_product, w.product_name, c.name as categoria, (SELECT name FROM locations WHERE id_location =  w.warehouse) as warehouse, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id WHERE w.status != 1 AND w.status != 9";
-                        //se envia la consulta
-                        $result=$mysqli->query($sql);
-                        $rows = $result->num_rows;
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo '<tr>';
-                            echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
-                            echo '<td>'.$row['product_name'].'</td>';
-                            echo '<td>'.$row['categoria'].'</td>';
-                            echo '<td>'.$row['warehouse'].'</td>';
-                            echo '<td>'.$row['location'].'</td>';
-                            echo '<td>'.$row['operativo'].'</td>';
-                            echo '</tr>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <section>
+            <table class="table is-hoverable" id="grid">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Almacén</th>
+                        <th>Ubicación</th>
+                        <th>Operativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //tomamos los datos del archivo conexion.php
+                    require("connect.php");
+                    $sql = "SELECT w.id_product, w.product_name, c.name as categoria, (SELECT name FROM locations WHERE id_location =  w.warehouse) as warehouse, w.location, l.name as location, o.id_operative as operativo FROM warehouse w LEFT JOIN categories c ON w.category = c.id_category LEFT JOIN locations l ON w.location = l.id_location LEFT JOIN operative o ON w.operative = o.id WHERE w.status != 1 AND w.status != 9";
+                    //se envia la consulta
+                    $result=$mysqli->query($sql);
+                    $rows = $result->num_rows;
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo '<tr>';
+                        echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
+                        echo '<td>'.$row['product_name'].'</td>';
+                        echo '<td>'.$row['categoria'].'</td>';
+                        echo '<td>'.$row['warehouse'].'</td>';
+                        echo '<td>'.$row['location'].'</td>';
+                        echo '<td>'.$row['operativo'].'</td>';
+                        echo '</tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </section>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <br><br><hr>
-                <p style="font-size:10px;margin-top:-20px;">Desarrollado por <a href="http://proyectoalis.com">Jesus Arciniega</a> &copy; 2017</p>
-            </div>
-        </div>
-    </div>
+    <br><br>
+
+    <?php include("footer.php"); ?>
 
     <script type="text/javascript">
     $( document ).ready(function() {
