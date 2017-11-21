@@ -1,4 +1,11 @@
-<?php require("session_check.php");error_reporting(0); setlocale(LC_ALL,”es_ES”); ?>
+<?php require("session_check.php");error_reporting(0); setlocale(LC_ALL,”es_ES”);
+require("connect.php");
+$sql = "SELECT COUNT(*) as cantidad FROM warehouse WHERE status = 0";
+$result=$mysqli->query($sql);
+$rows = $result->num_rows;
+while($row = mysqli_fetch_assoc($result)){
+    $cantidad = $row["cantidad"];
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +36,7 @@
                     Inventario
                 </h1>
                 <h2 class="subtitle">
-                    Inventario actual en almacén
+                    Inventario actual en almacén. <?php echo $cantidad; ?> BIENES.
                 </h2>
             </div>
         </div>
