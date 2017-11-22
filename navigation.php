@@ -59,6 +59,9 @@ while($row = mysqli_fetch_assoc($result)){
           <a class="navbar-item" href="operative.php">
             Listado
           </a>
+          <a class="navbar-item" href="keys.php">
+            Llaves
+          </a>
           <a class="navbar-item" href="operative_new.php">
             Nuevo
           </a>
