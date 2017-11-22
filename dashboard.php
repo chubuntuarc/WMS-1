@@ -148,27 +148,30 @@ $porcentaje = number_format(($cantidad * 100 ) / 480 , 2, '.', '');
                                                             <tr>
                                                                 <th>BIEN</th>
                                                                 <th>Descripción</th>
-                                                                <th>Ubicacion</th>
                                                                 <th>Fecha</th>
+                                                                <th>Cliente</th>
+                                                                <th>Comentarios</th>
+                                                                <th>Foto</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td><a>2845434</a></td>
-                                                                <td>Dodge RAM 1500 2002 Blanco</td>
-                                                                <td>Fila 7</td>
-                                                                <td>2017-10-25 12:30:00</td>
-                                                            </tr><tr>
-                                                                <td><a>2845434</a></td>
-                                                                <td>Dodge RAM 1500 2002 Blanco</td>
-                                                                <td>Fila 7</td>
-                                                                <td>2017-10-25 12:30:00</td>
-                                                            </tr><tr>
-                                                                <td><a>2845434</a></td>
-                                                                <td>Dodge RAM 1500 2002 Blanco</td>
-                                                                <td>Fila 7</td>
-                                                                <td>2017-10-25 12:30:00</td>
-                                                            </tr>
+                                                            <?php
+                                                            //tomamos los datos del archivo conexion.php
+                                                            $sql = "SELECT o.id_product, w.product_name, w.exit_date, w.client, w.exit_comments, w.exit_pic FROM warehouse w INNER JOIN outs o WHERE w.id_product = o.id_product ORDER BY o.id_out DESC LIMIT 5";
+                                                            //se envia la consulta
+                                                            $result=$mysqli->query($sql);
+                                                            $rows = $result->num_rows;
+                                                            while($row = mysqli_fetch_assoc($result)){
+                                                                echo '<tr>';
+                                                                echo '<td><a href="detail.php?code='.$row['id_product'].'">'.$row['id_product'].'</a></td>';
+                                                                echo '<td>'.$row['product_name'].'</td>';
+                                                                echo '<td>'.$row['exit_date'].'</td>';
+                                                                echo '<td>'.$row['client'].'</td>';
+                                                                echo '<td>'.$row['exit_comments'].'</td>';
+                                                                echo '<td><img src="'.$row['exit_pic'].'" height="100px" width="150px" style="box-shadow:2px 2px 4px grey"></td>';
+                                                                echo '</tr>';
+                                                            }
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                     <a class="button is-info" href="out.php">Nueva salida</a>
