@@ -38,6 +38,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" .$id. "/" . $_FILES["photo"]["name"]);
                     if($exit == 'on'){
                         $sql = "UPDATE warehouse SET status =  1, exit_date = NOW(), client = '" . $client . "' ,exit_comments = '" . $comments . "', exit_pic = 'upload/" .$id. "/" . $_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
+                        // Hacer que inserte en la tabla de salidas
+                        $sql2 == "INSERT INTO outs(id_product) VALUES('.$id.')"
                     }else{
                         if($comment_count == 1){
                             $sql = "UPDATE warehouse SET comment2 = '" . $comments . "', comment2_date = NOW() ,comment2_pic = 'upload/".$id. "/" .$_FILES["photo"]["name"] . "' WHERE id_product = " . $id;
