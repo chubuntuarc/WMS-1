@@ -28,7 +28,7 @@ $comment_count = 1;
 
 $id = intval($_GET['code']);
 require("connect.php");
-$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial, w.comment1 , w.comment1_date, w.comment1_pic, w.comment2 , w.comment2_date, w.comment2_pic, w.comment3 , w.comment3_date, w.comment3_pic, w.exit_comments, w.enter_date, w.exit_date FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
+$sql = "SELECT product_name, comments, pic1, pic2, pic3, pic4, pic5, pic6, coffer, driver, left_door, trunk, right_door, codriver, fuel, o.id_operative as operativo, w.status, w.serial, w.comment1 , w.comment1_date, w.comment1_pic, w.comment2 , w.comment2_date, w.comment2_pic, w.comment3 , w.comment3_date, w.comment3_pic, w.exit_comments, w.enter_date, w.exit_date, w.car_key FROM warehouse w LEFT JOIN operative o ON w.operative = o.id WHERE id_product = $id";
 $result=$mysqli->query($sql);
 $rows = $result->num_rows;
 while($row = mysqli_fetch_assoc($result)){
@@ -55,6 +55,7 @@ $pic6 = $row['pic6'];
 $status = $row['status'];
 $serial = $row['serial'];
 $operativo = $row['operativo'];
+$car_key = $row['car_key'];
 switch ($row['coffer']) {
     case '0': $coffer = 'N/A'; break;
     case '1': $coffer = 'Despegado'; break;
@@ -170,6 +171,7 @@ if($grant == 0){
             <br><br>
             <p> <span>NS: </span> <?php echo $serial; ?></p>
             <p> <span>Comentarios: </span> <?php echo $comments; ?></p>
+            <p><?php if($car_key == 1){echo "Con llave";}elseif ($car_key == 2) { echo "Sin llave"; }else { echo "Llave pendiente"; } ?></p>
 
             <br><br>
 
