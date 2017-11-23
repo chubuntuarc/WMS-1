@@ -1,73 +1,29 @@
-<?php
-$id = $_GET['id'];
-$code = $_GET['code'];
+<?php require("session_check.php");error_reporting(0); setlocale(LC_ALL,”es_ES”); $id = $_GET['id'];
+$code = $_GET['code'];?>
 
-session_start();
-if($_SESSION["user_id"] == 0){
-    header("Location: login.php");
-}
-switch ($_SESSION["rol"]) {
-    case 0:
-        $grant = 0;
-        break;
-    case 1:
-        $grant = 1;
-        break;
-    case 3:
-        $grant = 1;
-        break;
-    case 5:
-        $grant = 1;
-        break;
-    default:
-        $grant = 0;
-        break;
-}
- ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Detalle de operativo <?php echo $code; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalle operativo  <?php echo $code; ?></title>
     <link rel="shortcut icon" href="logotdr-min.png">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <!-- Milligram CSS minified -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-    <link rel="stylesheet" href="css/master.css">
-    <!-- Exportar y manejar tablas -->
+    <link rel="apple-touch-icon" sizes="57x57" href="tdr-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="tdr-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="tdr-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="tdr-icon-144x144.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+    <!--<link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/stats.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
-
     <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
-</head>
+    </head>
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <h5 class="mainTitle"><a href="index.php">TDR</a> | Operativo <?php echo $code; ?> </h5>
-                <hr>
-            </div>
-            <div class="column">
-                <div class="column menuOptions">
-                    <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="index.php">Inventario</a>
-                    <!-- <a href="in.php">Nueva entrada</a> -- -->
-                    <a <?php if($_SESSION["rol"] == 5){echo "style='display:none;'";} ?> href="binnacle.php">-- Bitácora</a>
-                    &nbsp;<form class="" action="logout.php" method="post">
-                        <input style="position:relative;left:80%;top:-32px;margin-bottom:-30px;" class="button button-clear" type="submit" name="logout" value="Salir">
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-            </div>
-        </div>
-    </div>
-
-    <hr>
+    <?php include("navigation.php"); ?>
 
     <?php
     if($grant == 0){
@@ -79,12 +35,27 @@ switch ($_SESSION["rol"]) {
         echo "</div>";
         echo "</div>";
     }
-     ?>
+    ?>
 
-    <div class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
-        <div class="row">
+    <section class="hero is-info" <?php if($grant == 0){echo "style='display:none;'";} ?>>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                     <?php echo $code; ?>
+                </h1>
+                <h2 class="subtitle">
+                    Listado de BIENES en el operativo
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section  class="container" <?php if($grant == 0){echo "style='display:none;'";} ?>>
+        <div class="columns">
             <div class="column">
-                <table id="grid">
+                <table class="table is-hoverable" id="grid">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -118,16 +89,11 @@ switch ($_SESSION["rol"]) {
                 </table>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <br><br><hr>
-                <p style="font-size:10px;margin-top:-20px;">Desarrollado por <a href="http://proyectoalis.com">Jesus Arciniega</a> &copy; 2017</p>
-            </div>
-        </div>
-    </div>
+    <br><br>
+
+    <?php include("footer.php"); ?>
 
     <script type="text/javascript">
     $( document ).ready(function() {
