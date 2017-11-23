@@ -173,6 +173,7 @@ if($grant == 0){
             <p> <span>Comentarios: </span> <?php echo $comments; ?></p>
             <p><?php if($car_key == 1){echo "Con llave";}elseif ($car_key == 2) { echo "Sin llave"; }else { echo "Llave pendiente"; } ?></p>
 
+            <?php echo '<a href="ticket.php?code='.$id.'"><img style="height:50px;margin-top:5px;" src="qrcode.png" alt=""></a>'; ?>
             <br><br>
 
             <h5>Relación de sellos</h5>
