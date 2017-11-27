@@ -45,6 +45,22 @@ $code = $_GET['code'];?>
                 </h1>
                 <h2 class="subtitle">
                     Listado de BIENES en el operativo
+                    <form class="" action="operative_control.php" method="post">
+                        <?php
+                        require("connect.php");
+                        $sql = "SELECT id,status FROM operative WHERe id_operative = '$code'";
+                        //se envia la consulta
+                        $result=$mysqli->query($sql);
+                        $rows = $result->num_rows;
+                        while($row = mysqli_fetch_assoc($result)){
+                            if ($row['status'] == 2) {
+                                echo '<input type="hidden" name="operative" value="'.$row['id'].'"><br><input class="button is-primary" type="submit" name="control" value="Comenzar">';
+                            }elseif ($row['status'] == 0) {
+                                echo '<input type="hidden" name="operative" value="'.$row['id'].'"><br><input class="button is-warning" type="submit" name="control" value="Finalizar">';
+                            }
+                        }
+                         ?>
+                    </form>
                 </h2>
             </div>
         </div>
