@@ -43,9 +43,10 @@ foreach ($lineas as $linea_num => $linea)
        $product_name = utf8_encode($datos[1]);
        $serial = utf8_encode($datos[2]);
        $category = $datos[3];
+       $warehouse = $datos[4];
 
        //guardamos en base de datos la línea leida
-       $sql = "INSERT INTO warehouse(id_product, product_name, serial, category, operative, status) VALUES($id_product, '$product_name', '$serial', $category,$operative_value, 2)";
+       $sql = "INSERT INTO warehouse(id_product, product_name, serial, category, operative, status, warehouse) VALUES($id_product, '$product_name', '$serial', $category,$operative_value, 2, $warehouse)";
        $mysqli->query($sql);
 
        //cerramos condición
