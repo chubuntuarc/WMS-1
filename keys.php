@@ -65,7 +65,8 @@
             }
              ?>
              <br><br><br>
-             <input class="button is-primary" type="submit" value="Guardar registros">
+             <?php if($rows != 0){echo '<input class="button is-primary" type="submit" value="Guardar registros">';} ?>
+
         </form>
     </section>
 
