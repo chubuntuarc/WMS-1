@@ -233,7 +233,7 @@ $porcentaje = number_format(($cantidad * 100 ) / 480 , 2, '.', '');
                                                                 echo '<td>'.$row['description'].'</td>';
                                                                 echo '<td>'.$row['loca'].'</td>';
                                                                 echo '<td>'.$row['usuario'].'</td>';
-                                                                echo '<td><img src="'.$row['picture'].'" height="60px"></td>';
+                                                                echo '<td><img style="height:60px;" src="'.$row['picture'].'" height="60px"></td>';
                                                                 echo '</tr>';
                                                             }
                                                             ?>
